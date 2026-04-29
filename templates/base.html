@@ -12,6 +12,19 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <link href="{% static 'css/blog.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+      // Apply saved theme as early as possible to avoid a flash
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
   </head>
 <body>
     <div class="container">
@@ -24,18 +37,21 @@
             <form action="{% url 'search' %}" method="GET">
               <div class="input-group">
                 <input class="form-control" type="text" name="keyword" value="{{ keyword }}" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                <button type="submit" class="btn btn-warning" id="button-search" type="button">Go!</button>
+                <button type="submit" class="btn btn-warning" id="button-search">Go!</button>
             </div>
             </form>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
+            <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+              <i class="fa fa-moon-o icon-moon" aria-hidden="true"></i>
+              <i class="fa fa-sun-o icon-sun" aria-hidden="true"></i>
+            </button>
             {% if not user.is_authenticated %}
             <a class="btn btn-sm btn-warning" href="{% url 'login' %}">Login</a> &nbsp;
             <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">Register</a>
             {% else %}
             <span><a href="{% url 'dashboard' %}">Dashboard</a></span>
             &emsp;
-            
             <span><a href="{% url 'logout' %}">Logout</a></span>
             {% endif %}
           </div>
@@ -45,7 +61,7 @@
       <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
           {% for cat in categories %}
-          <a class="p-2 text-muted" href="{% url 'posts_by_category' cat.id %}">{{ cat.category_name }}</a>
+          <a class="p-2" href="{% url 'posts_by_category' cat.id %}">{{ cat.category_name }}</a>
           {% endfor %}
         </nav>
       </div>
@@ -57,7 +73,21 @@
 
 <!-- Footer Part -->
 <footer class="blog-footer">
-    <p>Django blog built with 💖 by <a href="#">Rathan Kumar</a></p>
+    <p>Django blog built with <span style="color:#e25555;">&#10084;</span> by <a href="#">Rathan Kumar</a></p>
   </footer>
+  </div>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('theme-toggle');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var current = document.documentElement.getAttribute('data-theme') || 'light';
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+    })();
+  </script>
   </body>
   </html>
