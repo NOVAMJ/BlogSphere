@@ -3,3 +3,4 @@ Django
 django-crispy-forms
 Pillow
 gunicorn
+django-ckeditor==6.7.1

@@ -55,7 +55,31 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'dashboards',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
+
+# CKEditor
+CKEDITOR_UPLOAD_PATH = 'uploads/ckeditor/'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_RESTRICT_BY_USER = False
+CKEDITOR_BROWSE_SHOW_DIRS = True
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike'],
+            ['NumberedList', 'BulletedList', 'Blockquote'],
+            ['Link', 'Unlink', 'Image'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+            ['Format', 'Styles'],
+            ['RemoveFormat', 'Source'],
+        ],
+        'height': 300,
+        'width': '100%',
+    },
+}
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row mt-4 mb-4">
+    <div class="col-md-3 text-center">
+        {% if author.profile.avatar %}
+        <img src="{{ author.profile.avatar.url }}" alt="{{ author.username }}" class="rounded-circle img-fluid" style="max-width:160px;">
+        {% else %}
+        <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center"
+             style="width:160px;height:160px;font-size:60px;">
+            <i class="fa fa-user text-muted"></i>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-9">
+        <h2 class="mb-1">
+            {% if author.first_name or author.last_name %}{{ author.first_name }} {{ author.last_name }}{% else %}{{ author.username }}{% endif %}
+        </h2>
+        <p class="text-muted mb-2">@{{ author.username }} &middot; {{ post_count }} published post{{ post_count|pluralize }}</p>
+        {% if author.profile.bio %}
+        <p class="mb-2">{{ author.profile.bio }}</p>
+        {% else %}
+        <p class="text-muted font-italic mb-2">This author hasn't written a bio yet.</p>
+        {% endif %}
+        {% if author.profile.website %}
+        <p class="mb-0"><a href="{{ author.profile.website }}" target="_blank" rel="noopener"><i class="fa fa-link"></i> {{ author.profile.website }}</a></p>
+        {% endif %}
+    </div>
+</div>
+
+<hr>
+
+<h4 class="text-uppercase text-warning mb-3" style="letter-spacing:2px;">Posts by {{ author.username }}</h4>
+<div class="row">
+    {% for post in posts %}
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm">
+            {% if post.featured_image %}
+            <a href="{% url 'blogs' post.slug %}">
+                <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}" style="object-fit:cover;height:180px;">
+            </a>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'blogs' post.slug %}" class="text-dark">{{ post.title }}</a></h5>
+                <small class="text-muted">{{ post.created_at|timesince }} ago | {{ post.category }}</small>
+                <p class="card-text mt-2">{{ post.short_description|truncatewords:25 }}</p>
+                <a href="{% url 'blogs' post.slug %}" class="btn btn-sm btn-outline-warning">Read more</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12"><p class="text-muted">No published posts yet.</p></div>
+    {% endfor %}
+</div>
+
+{% endblock %}

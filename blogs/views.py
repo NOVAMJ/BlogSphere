@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.db.models import Q
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -7,7 +8,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 from django.views.generic import DetailView, ListView
 
-from .models import Blog, Category, Comment
+from .models import Blog, Category, Comment, Tag
 
 
 class BlogListView(ListView):
@@ -53,6 +54,12 @@ class BlogDetailView(DetailView):
             and blog.likes.filter(pk=self.request.user.pk).exists()
         )
         ctx['total_likes'] = blog.total_likes()
+        ctx['post_tags'] = blog.tags.all()
+        ctx['related_posts'] = (
+            Blog.objects.filter(status='Published', category=blog.category)
+            .exclude(pk=blog.pk)
+            .order_by('-created_at')[:3]
+        )
         return ctx
 
     def post(self, request, *args, **kwargs):
@@ -125,3 +132,29 @@ def like_blog(request, slug):
         blog.likes.add(request.user)
         liked = True
     return JsonResponse({'liked': liked, 'total_likes': blog.total_likes()})
+
+
+# Tags -------------------------------------------------------------------
+
+def posts_by_tag(request, slug):
+    tag = get_object_or_404(Tag, slug=slug)
+    posts = (
+        Blog.objects.filter(status='Published', tags=tag)
+        .order_by('-created_at')
+    )
+    return render(request, 'posts_by_tag.html', {'tag': tag, 'posts': posts})
+
+
+# Author profile ---------------------------------------------------------
+
+def author_profile(request, username):
+    author = get_object_or_404(User, username=username)
+    posts = (
+        Blog.objects.filter(status='Published', author=author)
+        .order_by('-created_at')
+    )
+    return render(
+        request,
+        'author_profile.html',
+        {'author': author, 'posts': posts, 'post_count': posts.count()},
+    )

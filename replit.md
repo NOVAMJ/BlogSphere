@@ -8,6 +8,7 @@ A Django-based blogging platform with categories, blog posts, comments, user aut
 - **Framework**: Django 6.0
 - **Database**: SQLite (`db.sqlite3`)
 - **Forms**: django-crispy-forms with crispy-bootstrap4
+- **Rich-text editor**: django-ckeditor (with built-in image uploader)
 - **Image processing**: Pillow
 - **Production server**: Gunicorn
 
@@ -28,11 +29,15 @@ A Django-based blogging platform with categories, blog posts, comments, user aut
 
 ## URL Highlights
 - `/` — Homepage with featured and recent posts
-- `/blogs/<slug>/` — Single blog post detail
+- `/posts/` — All posts (search + pagination)
+- `/blogs/<slug>/` — Single blog post detail (rich-text body, tags, related posts)
 - `/category/<id>/` — Posts by category
+- `/tag/<slug>/` — Posts by tag
+- `/author/<username>/` — Public author profile (bio, avatar, posts)
 - `/search/` — Search posts
 - `/login/`, `/register/`, `/logout/` — Auth pages
 - `/dashboard/` — Custom dashboard (login required) for posts, categories, users
+- `/ckeditor/` — Image upload endpoint for the rich-text editor
 - `/admin/` — Django built-in admin
 
 ## Deployment

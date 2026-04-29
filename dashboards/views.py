@@ -7,7 +7,8 @@ from django.template.defaultfilters import slugify
 
 from blogs.models import Blog, Category, Comment
 
-from .forms import AddUserForm, BlogPostForm, CategoryForm, EditUserForm
+from .forms import AddUserForm, BlogPostForm, CategoryForm, EditUserForm, ProfileForm
+from blogs.models import Profile
 
 
 # ---- Helpers ------------------------------------------------------------
@@ -197,15 +198,21 @@ def edit_user(request, pk):
     if not _is_admin_or_manager(request.user):
         raise PermissionDenied
     user = get_object_or_404(User, pk=pk)
+    profile, _ = Profile.objects.get_or_create(user=user)
     if request.method == 'POST':
         form = EditUserForm(request.POST, instance=user)
-        if form.is_valid():
+        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid() and profile_form.is_valid():
             form.save()
+            profile_form.save()
             messages.success(request, 'User updated.')
             return redirect('users')
     else:
         form = EditUserForm(instance=user)
-    return render(request, 'dashboard/edit_user.html', {'form': form})
+        profile_form = ProfileForm(instance=profile)
+    return render(request, 'dashboard/edit_user.html', {
+        'form': form, 'profile_form': profile_form, 'edit_user': user,
+    })
 
 
 @login_required(login_url='login')

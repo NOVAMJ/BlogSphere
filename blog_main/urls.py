@@ -25,6 +25,8 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('category/', include('blogs.urls')),
     path('posts/', BlogsView.BlogListView.as_view(), name='post_list'),
+    path('tag/<slug:slug>/', BlogsView.posts_by_tag, name='posts_by_tag'),
+    path('author/<str:username>/', BlogsView.author_profile, name='author_profile'),
     path('blogs/<slug:slug>/', BlogsView.BlogDetailView.as_view(), name='blogs'),
     path('blogs/<slug:slug>/like/', BlogsView.like_blog, name='like_blog'),
     path('comments/<int:pk>/delete/', BlogsView.delete_comment, name='delete_comment'),
@@ -33,6 +35,9 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
+
+    # CKEditor uploader (image upload inside the editor)
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 
     # Dashboards
     path('dashboard/', include('dashboards.urls')),
