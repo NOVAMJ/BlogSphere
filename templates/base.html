@@ -72,9 +72,11 @@
 {% endblock %}
 
 <!-- Footer Part -->
+{% if request.path == '/' and not user.is_authenticated %}
 <footer class="blog-footer">
     <p class="mb-0">&copy; BlogSphere &middot; Mridul Jindal</p>
   </footer>
+{% endif %}
   </div>
 
   <script>
