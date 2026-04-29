@@ -39,5 +39,27 @@ A Django-based blogging platform with categories, blog posts, comments, user aut
 - Target: **Autoscale** (stateless web app)
 - Run: `gunicorn --bind=0.0.0.0:5000 --reuse-port blog_main.wsgi:application`
 
+## Roles & RBAC
+Four groups are seeded by migration `blogs/0008_create_rbac_groups.py`:
+
+| Group   | Permissions |
+|---------|-------------|
+| Admin   | Full access to blogs, categories, comments, users, groups |
+| Manager | Full blog/category CRUD + user management; can moderate comments |
+| Editor  | Full blog CRUD on any post; can moderate comments |
+| Author  | Add/edit/delete **own** posts only (ownership enforced in dashboard views) |
+
+Group membership is assigned via the Django admin or `/dashboard/users/`.
+
+## Likes & Comments
+- Likes are a `Blog.likes` ManyToMany on `User`; toggled via `POST /blogs/<slug>/like/` (returns JSON, used by an inline `fetch` in `templates/blogs.html`).
+- Comments: authenticated users post via the form on the blog detail page. Comment authors (and users with `delete_comment` permission, or superusers) can delete via `POST /comments/<id>/delete/`.
+
+## Public URLs (added)
+- `/posts/` — `BlogListView` with `?keyword=` search and 10-per-page pagination.
+- `/blogs/<slug>/like/` — like/unlike toggle (POST, JSON).
+- `/comments/<id>/delete/` — delete comment (POST).
+
 ## Recent Changes
 - 2026-04-29: Initial Replit setup. Installed dependencies, set `ALLOWED_HOSTS`/`CSRF_TRUSTED_ORIGINS` for the Replit proxy, configured the workflow on port 5000, and added gunicorn for autoscale deployment.
+- 2026-04-29: Major upgrade — added Category.slug + Blog.likes (with auto-slug on save), refactored public blog views to class-based (`BlogListView`/`BlogDetailView`) with search + pagination, added comment-delete and AJAX like endpoints, seeded RBAC groups (Admin/Manager/Editor/Author), restricted dashboard category/user CRUD to Admin/Manager, scoped author dashboard to own posts, gated edit/delete buttons on permissions, and changed login redirect to homepage (with `?next=` support).

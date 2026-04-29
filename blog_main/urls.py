@@ -24,7 +24,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('category/', include('blogs.urls')),
-    path('blogs/<slug:slug>/', BlogsView.blogs, name='blogs'),
+    path('posts/', BlogsView.BlogListView.as_view(), name='post_list'),
+    path('blogs/<slug:slug>/', BlogsView.BlogDetailView.as_view(), name='blogs'),
+    path('blogs/<slug:slug>/like/', BlogsView.like_blog, name='like_blog'),
+    path('comments/<int:pk>/delete/', BlogsView.delete_comment, name='delete_comment'),
     # Search endpoint
     path('search/', BlogsView.search, name='search'),
     path('register/', views.register, name='register'),

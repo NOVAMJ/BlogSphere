@@ -1,0 +1,74 @@
+You are working on an existing Django blogging project. Upgrade and improve it step-by-step WITHOUT breaking existing functionality. Do NOT rewrite entire files unnecessarily. Modify and extend the current code cleanly.
+
+Apply the following improvements:
+
+1. MODELS:
+- Add Category model (name, slug)
+- Update Post model:
+  - add status field (Draft/Published choices)
+  - add featured_image (ImageField)
+  - add ManyToMany likes field
+  - ensure slug is unique and auto-generated
+- Ensure Comment model includes post, user, content, created_at
+
+2. ROLE-BASED ACCESS CONTROL (RBAC):
+- Create Django Groups: Admin, Manager, Editor, Author
+- Assign permissions:
+  - Admin: full access
+  - Manager: manage users and posts
+  - Editor: edit all posts
+  - Author: create and edit only their own posts
+- Enforce permissions in views
+
+3. VIEWS (REFRACTOR):
+- Convert Post views to class-based views:
+  ListView, DetailView, CreateView, UpdateView, DeleteView
+- Add login required for create/update/delete
+- Ensure Author can edit only their own posts
+
+4. CATEGORY CRUD:
+- Implement Create, List, Update, Delete for Category
+- Restrict access to Admin and Manager
+
+5. COMMENTS:
+- Add create and delete comment functionality
+- Only authenticated users can comment
+- Display comments on post detail page
+
+6. AUTHENTICATION:
+- Ensure Register, Login, Logout using Django auth
+- Redirect users to homepage after login
+
+7. SEARCH + PAGINATION:
+- Add search by title and content in Post ListView
+- Add pagination (10 posts per page)
+
+8. MEDIA:
+- Configure MEDIA_URL and MEDIA_ROOT
+- Enable featured_image upload and display in templates
+
+9. TEMPLATES (HTML + Bootstrap):
+- Improve base.html with navbar, login/logout, footer
+- Improve post_list.html using Bootstrap cards + pagination
+- Improve post_detail.html with image + comments section
+
+10. DASHBOARD:
+- Create dashboard view:
+  - Author: see own posts
+  - Admin: see all posts and comments stats
+
+11. TEMPLATE PERMISSIONS:
+- Show edit/delete buttons only if user has permission
+
+12. LIKE SYSTEM:
+- Implement like/unlike using ManyToMany field
+- Add simple AJAX button (no React) to update without reload
+
+IMPORTANT RULES:
+- Do not rewrite full files unless necessary
+- Keep existing structure intact
+- Add only required imports and changes
+- Write clean, readable Django code
+- Mention where each change should be applied (models.py, views.py, templates, etc.)
+
+Goal: Convert this into a production-ready blogging platform with RBAC, CRUD, dashboard, and modern UI.

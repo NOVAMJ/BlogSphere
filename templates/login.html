@@ -7,6 +7,7 @@
 
 <form action="{% url 'login' %}" method="POST" style="width:500px; margin:auto;">
     {% csrf_token %}
+    {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
     {{ form | crispy }}
     <button type="submit" class="btn btn-warning">Login</button>
 </form>

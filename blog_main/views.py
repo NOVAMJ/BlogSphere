@@ -50,10 +50,14 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user is not None:
                 auth.login(request, user)
-            return redirect('dashboard')
+                next_url = request.GET.get('next') or request.POST.get('next')
+                if next_url:
+                    return redirect(next_url)
+                return redirect('home')
     form = AuthenticationForm()
     context = {
         'form': form,
+        'next': request.GET.get('next', ''),
     }
     return render(request, 'login.html', context)
 

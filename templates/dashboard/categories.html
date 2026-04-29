@@ -23,18 +23,24 @@
               </tr>
             </thead>
             <tbody>
-            {% for cat in categories %}
+            {% for cat in categories_list %}
               <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>{{ cat }}</td>
                 <td>{{ cat.created_at }}</td>
                 <td>{{ cat.updated_at }}</td>
                 <td>
+                    {% if perms.blogs.change_category %}
                     <a href="{% url 'edit_category' cat.id %}"><i class="fa fa-edit text-success"></i></a>
                     &nbsp;
-                    <a href="{% url 'delete_category' cat.id %}"><i class="fa fa-trash text-danger"></i></a>
+                    {% endif %}
+                    {% if perms.blogs.delete_category %}
+                    <a href="{% url 'delete_category' cat.id %}" onclick="return confirm('Delete this category?');"><i class="fa fa-trash text-danger"></i></a>
+                    {% endif %}
                 </td>
               </tr>
+            {% empty %}
+              <tr><td colspan="5" class="text-center text-muted">No categories yet.</td></tr>
             {% endfor %}
               
             </tbody>
