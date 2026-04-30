@@ -555,3 +555,15 @@ article .card:hover { transform: none; box-shadow: var(--shadow); }
   font-weight: 700;
   white-space: nowrap;
 }
+
+/* =========================================================
+   Sidebar card (theme-aware replacement for Bootstrap bg-light)
+   ========================================================= */
+.sidebar-card {
+  background-color: var(--bg-elev);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.sidebar-card h4 { color: var(--text); }
+.sidebar-card p  { color: var(--text-muted); }
