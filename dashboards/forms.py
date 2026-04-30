@@ -10,6 +10,18 @@ class CategoryForm(forms.ModelForm):
         fields = '__all__'
 
 
+FEATURE_TOGGLE_GROUPS = ('Admin', 'Manager', 'Editor')
+
+
+def _user_can_feature(user):
+    """Only Admin/Manager/Editor (or superuser) can mark a post as featured."""
+    if user is None or not user.is_authenticated:
+        return False
+    if user.is_superuser:
+        return True
+    return user.groups.filter(name__in=FEATURE_TOGGLE_GROUPS).exists()
+
+
 class BlogPostForm(forms.ModelForm):
     tags_input = forms.CharField(
         label='Tags',
@@ -26,13 +38,28 @@ class BlogPostForm(forms.ModelForm):
         )
 
     def __init__(self, *args, **kwargs):
+        # Pull the requesting user out of kwargs so views can pass it in.
+        self._request_user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         if self.instance and self.instance.pk:
             self.fields['tags_input'].initial = ', '.join(
                 t.name for t in self.instance.tags.all()
             )
+        # Hide the "Is featured" field from users who aren't allowed to set it.
+        if not _user_can_feature(self._request_user):
+            self.fields.pop('is_featured', None)
 
     def save(self, commit=True):
+        # Defence in depth: even if the field was tampered with client-side,
+        # never let a non-privileged user flip is_featured.
+        if not _user_can_feature(self._request_user):
+            if self.instance.pk:
+                # Editing an existing post: keep whatever value is already saved.
+                original = type(self.instance).objects.filter(pk=self.instance.pk).values_list('is_featured', flat=True).first()
+                self.instance.is_featured = bool(original)
+            else:
+                # Brand-new post: force off.
+                self.instance.is_featured = False
         instance = super().save(commit=commit)
         if commit:
             self._save_tags(instance)

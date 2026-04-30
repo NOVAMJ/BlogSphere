@@ -127,7 +127,7 @@ def posts(request):
 @permission_required('blogs.add_blog', raise_exception=True)
 def add_post(request):
     if request.method == 'POST':
-        form = BlogPostForm(request.POST, request.FILES)
+        form = BlogPostForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -135,10 +135,11 @@ def add_post(request):
             # Refresh slug to include the id (preserves original behaviour)
             post.slug = slugify(form.cleaned_data['title']) + '-' + str(post.id)
             post.save()
+            form.save_m2m_tags(post)
             messages.success(request, 'Post created.')
             return redirect('posts')
     else:
-        form = BlogPostForm()
+        form = BlogPostForm(user=request.user)
     return render(request, 'dashboard/add_post.html', {'form': form})
 
 
@@ -147,7 +148,7 @@ def edit_post(request, pk):
     post = get_object_or_404(Blog, pk=pk)
     _ensure_can_edit_post(request.user, post)
     if request.method == 'POST':
-        form = BlogPostForm(request.POST, request.FILES, instance=post)
+        form = BlogPostForm(request.POST, request.FILES, instance=post, user=request.user)
         if form.is_valid():
             post = form.save()
             post.slug = slugify(form.cleaned_data['title']) + '-' + str(post.id)
@@ -155,7 +156,7 @@ def edit_post(request, pk):
             messages.success(request, 'Post updated.')
             return redirect('posts')
     else:
-        form = BlogPostForm(instance=post)
+        form = BlogPostForm(instance=post, user=request.user)
     return render(request, 'dashboard/edit_post.html', {'form': form, 'post': post})
 
 
