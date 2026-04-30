@@ -32,9 +32,13 @@ DEBUG = os.environ.get('DEBUG', 'True').lower() in ('true', '1', 'yes')
 ALLOWED_HOSTS = ['*']
 
 # Public site URL used for absolute links in sitemap, OG tags, etc.
-SITE_URL = os.environ.get('SITE_URL', 'https://blogsphere.replit.app').rstrip('/')
+SITE_URL = os.environ.get('SITE_URL', 'https://mriduldev.xyz').rstrip('/')
 
 CSRF_TRUSTED_ORIGINS = [
+    # Production domain
+    'https://mriduldev.xyz',
+    'https://www.mriduldev.xyz',
+    # Replit preview / dev
     'https://*.replit.dev',
     'https://*.repl.co',
     'https://*.replit.app',
