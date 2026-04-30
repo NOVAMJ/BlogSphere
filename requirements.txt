@@ -5,3 +5,10 @@ Pillow
 gunicorn
 django-ckeditor==6.7.1
 whitenoise==6.7.0
+crispy-bootstrap4
+Django
+django-ckeditor==6.7.1
+django-crispy-forms
+gunicorn
+Pillow
+whitenoise==6.7.0
