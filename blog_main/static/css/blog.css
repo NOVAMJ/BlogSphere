@@ -622,3 +622,23 @@ article .card:hover { transform: none; box-shadow: var(--shadow); }
 .oauth-btn--github        { color: var(--text); }
 .oauth-btn--github:hover  { background-color: #24292f; color: #fff; border-color: #24292f; }
 [data-theme="dark"] .oauth-btn--github:hover { background-color: #f0f6fc; color: #24292f; border-color: #f0f6fc; }
+
+/* =========================================================
+   Brand logo image (replaces text logo)
+   ========================================================= */
+.brand-logo {
+  height: 64px;
+  width: auto;
+  display: block;
+  transition: transform .2s ease;
+}
+.brand-logo:hover { transform: scale(1.03); }
+
+/* On dark mode, slightly brighten the gold so it pops on dark bg */
+[data-theme="dark"] .brand-logo {
+  filter: brightness(1.08) saturate(1.05);
+}
+
+@media (max-width: 575px) {
+  .brand-logo { height: 48px; }
+}

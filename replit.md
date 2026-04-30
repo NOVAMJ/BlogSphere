@@ -76,6 +76,7 @@ Group membership is assigned via the Django admin or `/dashboard/users/`.
 - `/comments/<id>/delete/` — delete comment (POST).
 
 ## Recent Changes
+- 2026-04-30: Brand identity — added a custom BlogSphere logo (globe + quill, brand amber/gold) at `blog_main/static/images/logo.png`, served as the header logo and as the site favicon. Header now uses the image instead of the text wordmark.
 - 2026-04-30: Added social login (Google + GitHub) via `django-allauth`. Mounted at `/accounts/`. Provider credentials are read from `GOOGLE_OAUTH_CLIENT_ID/SECRET` and `GITHUB_OAUTH_CLIENT_ID/SECRET` env vars; the buttons on `/login/` and `/register/` only appear when the matching env var is set, so the site degrades gracefully if a provider isn't configured.
 - 2026-04-29: Initial Replit setup. Installed dependencies, set `ALLOWED_HOSTS`/`CSRF_TRUSTED_ORIGINS` for the Replit proxy, configured the workflow on port 5000, and added gunicorn for autoscale deployment.
 - 2026-04-29: Major upgrade — added Category.slug + Blog.likes (with auto-slug on save), refactored public blog views to class-based (`BlogListView`/`BlogDetailView`) with search + pagination, added comment-delete and AJAX like endpoints, seeded RBAC groups (Admin/Manager/Editor/Author), restricted dashboard category/user CRUD to Admin/Manager, scoped author dashboard to own posts, gated edit/delete buttons on permissions, and changed login redirect to homepage (with `?next=` support).

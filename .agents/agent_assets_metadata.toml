@@ -1,0 +1,14 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "0Qr1MkC9JYB-Za7H5BIOP"
+uri = "file://blog_main/static/images/logo.png"
+type = "image"
+title = "blogsphere logo mark"
+
+[[generated]]
+id = "wFoSArm4cNOMhQSpdBSlq"
+uri = "file://blog_main/static/images/favicon-source.png"
+type = "image"
+title = "blogsphere favicon"
