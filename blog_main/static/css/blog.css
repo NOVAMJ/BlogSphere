@@ -627,7 +627,7 @@ article .card:hover { transform: none; box-shadow: var(--shadow); }
    Brand logo image (replaces text logo)
    ========================================================= */
 .brand-logo {
-  height: 64px;
+  height: 110px;
   width: auto;
   display: block;
   transition: transform .2s ease;
@@ -640,5 +640,5 @@ article .card:hover { transform: none; box-shadow: var(--shadow); }
 }
 
 @media (max-width: 575px) {
-  .brand-logo { height: 48px; }
+  .brand-logo { height: 72px; }
 }
