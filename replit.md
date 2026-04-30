@@ -76,6 +76,7 @@ Group membership is assigned via the Django admin or `/dashboard/users/`.
 - `/comments/<id>/delete/` — delete comment (POST).
 
 ## Recent Changes
+- 2026-04-30: Auto-assign new sign-ups to the **Author** group via a `post_save` signal in `blogs/signals.py` (wired in `blogs/apps.py`'s `ready()`). This covers the regular `/register/` form, social login (Google/GitHub), and admin-created users. Superusers/staff are skipped. Existing users without a group were backfilled into Author. Result: any newly registered user can immediately add their own posts at `/dashboard/posts/add/`.
 - 2026-04-30: Brand identity — added a custom BlogSphere logo (globe + quill, brand amber/gold) at `blog_main/static/images/logo.png`, served as the header logo and as the site favicon. Header now uses the image instead of the text wordmark.
 - 2026-04-30: Added social login (Google + GitHub) via `django-allauth`. Mounted at `/accounts/`. Provider credentials are read from `GOOGLE_OAUTH_CLIENT_ID/SECRET` and `GITHUB_OAUTH_CLIENT_ID/SECRET` env vars; the buttons on `/login/` and `/register/` only appear when the matching env var is set, so the site degrades gracefully if a provider isn't configured.
 - 2026-04-29: Initial Replit setup. Installed dependencies, set `ALLOWED_HOSTS`/`CSRF_TRUSTED_ORIGINS` for the Replit proxy, configured the workflow on port 5000, and added gunicorn for autoscale deployment.
