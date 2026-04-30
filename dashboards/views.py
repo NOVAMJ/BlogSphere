@@ -40,11 +40,15 @@ def _ensure_can_edit_post(user, post):
 @login_required(login_url='login')
 def dashboard(request):
     is_priv = _can_edit_any_post(request.user)
+    pending_feature_requests = 0
     if is_priv:
         category_count = Category.objects.count()
         blogs_count = Blog.objects.count()
         comments_count = Comment.objects.count()
         recent_posts = Blog.objects.all().order_by('-created_at')[:5]
+        pending_feature_requests = Blog.objects.filter(
+            feature_requested=True, is_featured=False
+        ).count()
     else:
         category_count = Category.objects.count()
         blogs_count = Blog.objects.filter(author=request.user).count()
@@ -56,6 +60,7 @@ def dashboard(request):
         'comments_count': comments_count,
         'recent_posts': recent_posts,
         'is_priv': is_priv,
+        'pending_feature_requests': pending_feature_requests,
     }
     return render(request, 'dashboard/dashboard.html', context)
 

@@ -34,8 +34,15 @@ class BlogPostForm(forms.ModelForm):
         model = Blog
         fields = (
             'title', 'category', 'featured_image',
-            'short_description', 'blog_body', 'status', 'is_featured',
+            'short_description', 'blog_body', 'status',
+            'is_featured', 'feature_requested',
         )
+        labels = {
+            'feature_requested': 'Suggest as Featured',
+        }
+        help_texts = {
+            'feature_requested': 'Tick to ask an editor to review this post for the homepage Featured section.',
+        }
 
     def __init__(self, *args, **kwargs):
         # Pull the requesting user out of kwargs so views can pass it in.
@@ -45,8 +52,13 @@ class BlogPostForm(forms.ModelForm):
             self.fields['tags_input'].initial = ', '.join(
                 t.name for t in self.instance.tags.all()
             )
-        # Hide the "Is featured" field from users who aren't allowed to set it.
-        if not _user_can_feature(self._request_user):
+
+        if _user_can_feature(self._request_user):
+            # Editors/Managers/Admins control the real flag — they don't need
+            # to "suggest" their own posts.
+            self.fields.pop('feature_requested', None)
+        else:
+            # Authors can't flip is_featured; they only get the suggestion field.
             self.fields.pop('is_featured', None)
 
     def save(self, commit=True):
@@ -60,6 +72,10 @@ class BlogPostForm(forms.ModelForm):
             else:
                 # Brand-new post: force off.
                 self.instance.is_featured = False
+        else:
+            # Once an editor actually features a post, clear any pending request.
+            if self.instance.is_featured:
+                self.instance.feature_requested = False
         instance = super().save(commit=commit)
         if commit:
             self._save_tags(instance)

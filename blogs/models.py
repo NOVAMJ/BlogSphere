@@ -70,6 +70,10 @@ class Blog(models.Model):
     tags = models.ManyToManyField(Tag, related_name='blogs', blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="Draft")
     is_featured = models.BooleanField(default=False)
+    feature_requested = models.BooleanField(
+        default=False,
+        help_text="Author has asked an editor to consider featuring this post.",
+    )
     likes = models.ManyToManyField(User, related_name='liked_blogs', blank=True)
     views = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)

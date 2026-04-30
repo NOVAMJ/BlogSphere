@@ -12,6 +12,14 @@
     <div class="col-md-9">
         <h2>Edit Blog Post</h2>
 
+        {% if post.feature_requested and not post.is_featured and perms.blogs.change_blog %}
+        <div class="alert alert-warning" role="alert">
+            <i class="fa fa-star"></i>
+            <b>Featured request:</b> the author has asked an editor to consider featuring this post.
+            Tick <b>"Is featured"</b> below and save to approve, or leave unticked to ignore.
+        </div>
+        {% endif %}
+
         <form action="{% url 'edit_post' post.id %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.media }}

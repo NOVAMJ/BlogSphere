@@ -34,7 +34,15 @@
                 <td>{{ post.category }}</td>
                 <td>{{ post.author }}</td>
                 <td>{{ post.status }}</td>
-                <td>{% if post.is_featured %}<i class="fa fa-check text-success"></i>{% else %}<i class="fa fa-times text-danger"></i>{% endif %}</td>
+                <td>
+                    {% if post.is_featured %}
+                        <i class="fa fa-check text-success"></i>
+                    {% elif post.feature_requested %}
+                        <span class="badge badge-warning" style="background:#f0ad4e;color:#000;padding:3px 8px;border-radius:10px;font-size:11px;">Requested</span>
+                    {% else %}
+                        <i class="fa fa-times text-danger"></i>
+                    {% endif %}
+                </td>
                 <td>
                     {% if perms.blogs.change_blog %}
                     <a href="{% url 'edit_post' post.id %}"><i class="fa fa-edit text-success"></i></a>

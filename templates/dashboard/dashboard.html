@@ -16,6 +16,16 @@
             </span>
         </div>
 
+        {% if is_priv and pending_feature_requests %}
+        <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert">
+            <span>
+                <i class="fa fa-star"></i>
+                <b>{{ pending_feature_requests }}</b> post{{ pending_feature_requests|pluralize }} awaiting Featured review.
+            </span>
+            <a href="{% url 'posts' %}" class="btn btn-sm btn-dark">Review</a>
+        </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <div class="card border-default mb-3">
