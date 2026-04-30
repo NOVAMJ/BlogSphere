@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /ckeditor/
+Disallow: /login/
+Disallow: /logout/
+Disallow: /register/
+Allow: /
+
+Sitemap: {{ request.scheme }}://{{ request.get_host }}/sitemap.xml

@@ -14,6 +14,10 @@
                     <div class="text-muted fst-italic mb-2">
                         Posted on {{ single_blog.created_at|date:"M j, Y" }} by
                         <a href="{% url 'author_profile' single_blog.author.username %}">{{ single_blog.author }}</a>
+                        <span class="mx-1">·</span>
+                        <span><i class="fa fa-clock-o"></i> {{ single_blog.reading_time }} min read</span>
+                        <span class="mx-1">·</span>
+                        <span><i class="fa fa-eye"></i> {{ single_blog.views }} view{{ single_blog.views|pluralize }}</span>
                     </div>
                     <a class="badge bg-warning text-decoration-none text-light" href="{% url 'posts_by_category' single_blog.category.id %}">{{ single_blog.category }}</a>
                     {% for tag in post_tags %}
@@ -43,10 +47,16 @@
                     <span class="ml-2 text-muted">&nbsp;<span id="like-count">{{ total_likes }}</span> like{{ total_likes|pluralize }}</span>
                 </div>
 
+                {% include "includes/share.html" with share_title=single_blog.title share_url=request.build_absolute_uri %}
+
                 <!-- Post content-->
-                <section class="mb-5">
+                <section class="mb-5 mt-4">
                     <p class="fs-5 mb-4">{{ single_blog.short_description }}</p>
                     <div class="blog-body fs-5 mb-4">{{ single_blog.blog_body|safe }}</div>
+
+                    <div class="mt-4 mb-4">
+                        {% include "includes/share.html" with share_title=single_blog.title share_url=request.build_absolute_uri %}
+                    </div>
 
                     <!-- Comments -->
                     <h4>Comments ({{ comment_count }})</h4>

@@ -1,10 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db.models import Q
+from django.db.models import F, Q
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.utils.html import strip_tags
 from django.views.decorators.http import require_POST
 from django.views.generic import DetailView, ListView
 
@@ -43,6 +44,18 @@ class BlogDetailView(DetailView):
     def get_queryset(self):
         return Blog.objects.filter(status='Published')
 
+    def get(self, request, *args, **kwargs):
+        response = super().get(request, *args, **kwargs)
+        # Increment view count once per session, skipping the author themselves.
+        blog = self.object
+        seen = request.session.get('viewed_blogs', [])
+        if blog.pk not in seen and request.user.id != blog.author_id:
+            Blog.objects.filter(pk=blog.pk).update(views=F('views') + 1)
+            seen.append(blog.pk)
+            request.session['viewed_blogs'] = seen[-200:]
+            blog.views = (blog.views or 0) + 1
+        return response
+
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         blog = self.object
@@ -60,6 +73,15 @@ class BlogDetailView(DetailView):
             .exclude(pk=blog.pk)
             .order_by('-created_at')[:3]
         )
+        # SEO meta
+        request = self.request
+        absolute_image = ''
+        if blog.featured_image:
+            absolute_image = request.build_absolute_uri(blog.featured_image.url)
+        ctx['meta_title'] = f"{blog.title} — BlogSphere"
+        ctx['meta_description'] = (blog.short_description or strip_tags(blog.blog_body or ''))[:160]
+        ctx['meta_image'] = absolute_image
+        ctx['meta_type'] = 'article'
         return ctx
 
     def post(self, request, *args, **kwargs):

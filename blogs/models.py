@@ -71,6 +71,7 @@ class Blog(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="Draft")
     is_featured = models.BooleanField(default=False)
     likes = models.ManyToManyField(User, related_name='liked_blogs', blank=True)
+    views = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -90,6 +91,14 @@ class Blog(models.Model):
 
     def total_likes(self):
         return self.likes.count()
+
+    @property
+    def reading_time(self):
+        """Estimated minutes to read the post (200 wpm)."""
+        import re
+        text = re.sub(r'<[^>]+>', ' ', self.blog_body or '')
+        words = len(text.split()) + len((self.short_description or '').split())
+        return max(1, round(words / 200))
 
 
 class Comment(models.Model):

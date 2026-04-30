@@ -11,6 +11,8 @@ A Django-based blogging platform with categories, blog posts, comments, user aut
 - **Rich-text editor**: django-ckeditor (with built-in image uploader)
 - **Image processing**: Pillow
 - **Production server**: Gunicorn
+- **Static files in production**: WhiteNoise (compressed manifest storage)
+- **SEO**: django.contrib.sitemaps, robots.txt, OpenGraph + Twitter card meta
 
 ## Project Structure
 - `blog_main/` — Django project settings, root URLs, and WSGI entry point
@@ -38,7 +40,15 @@ A Django-based blogging platform with categories, blog posts, comments, user aut
 - `/login/`, `/register/`, `/logout/` — Auth pages
 - `/dashboard/` — Custom dashboard (login required) for posts, categories, users
 - `/ckeditor/` — Image upload endpoint for the rich-text editor
+- `/sitemap.xml` — Auto-generated sitemap (posts, categories, tags, authors)
+- `/robots.txt` — Crawler rules
 - `/admin/` — Django built-in admin
+
+## Environment Variables (production)
+Override these before deploying. Sensible dev defaults are used when unset.
+- `SECRET_KEY` — Django secret key (required for production)
+- `DEBUG` — `True`/`False`; defaults to `True` for development
+- `SITE_URL` — Public site URL used for absolute links
 
 ## Deployment
 - Target: **Autoscale** (stateless web app)
@@ -68,3 +78,4 @@ Group membership is assigned via the Django admin or `/dashboard/users/`.
 ## Recent Changes
 - 2026-04-29: Initial Replit setup. Installed dependencies, set `ALLOWED_HOSTS`/`CSRF_TRUSTED_ORIGINS` for the Replit proxy, configured the workflow on port 5000, and added gunicorn for autoscale deployment.
 - 2026-04-29: Major upgrade — added Category.slug + Blog.likes (with auto-slug on save), refactored public blog views to class-based (`BlogListView`/`BlogDetailView`) with search + pagination, added comment-delete and AJAX like endpoints, seeded RBAC groups (Admin/Manager/Editor/Author), restricted dashboard category/user CRUD to Admin/Manager, scoped author dashboard to own posts, gated edit/delete buttons on permissions, and changed login redirect to homepage (with `?next=` support).
+- 2026-04-30: Production polish — hero banner on homepage, reading time + view counter on posts, social share bar (Twitter/Facebook/LinkedIn/WhatsApp/Copy), full SEO suite (sitemap.xml, robots.txt, OpenGraph + Twitter card meta), WhiteNoise for static files, env-var-driven SECRET_KEY/DEBUG, conditional production security hardening (HSTS, secure cookies, SSL redirect).

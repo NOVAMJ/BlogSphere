@@ -4,3 +4,4 @@ django-crispy-forms
 Pillow
 gunicorn
 django-ckeditor==6.7.1
+whitenoise==6.7.0
