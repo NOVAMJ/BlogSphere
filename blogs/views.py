@@ -1,7 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db.models import F, Q
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from django.db.models import Count, F, Q
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -9,7 +11,7 @@ from django.utils.html import strip_tags
 from django.views.decorators.http import require_POST
 from django.views.generic import DetailView, ListView
 
-from .models import Blog, Category, Comment, Tag
+from .models import Blog, Category, Comment, ContactMessage, NewsletterSubscriber, Tag
 
 
 class BlogListView(ListView):
@@ -59,9 +61,16 @@ class BlogDetailView(DetailView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         blog = self.object
-        comments = Comment.objects.filter(blog=blog)
-        ctx['comments'] = comments
-        ctx['comment_count'] = comments.count()
+        # Top-level comments only; replies are accessed via comment.replies.all
+        top_comments = (
+            Comment.objects
+            .filter(blog=blog, parent__isnull=True)
+            .select_related('user', 'user__profile')
+            .prefetch_related('replies__user', 'replies__user__profile')
+            .order_by('-created_at')
+        )
+        ctx['comments'] = top_comments
+        ctx['comment_count'] = Comment.objects.filter(blog=blog).count()
         ctx['liked'] = (
             self.request.user.is_authenticated
             and blog.likes.filter(pk=self.request.user.pk).exists()
@@ -85,15 +94,27 @@ class BlogDetailView(DetailView):
         return ctx
 
     def post(self, request, *args, **kwargs):
-        """Handle new comment submissions on the detail page."""
+        """Handle new comment submissions on the detail page (with optional reply parent)."""
         self.object = self.get_object()
         if not request.user.is_authenticated:
             return redirect(f"{reverse('login')}?next={request.path}")
         text = (request.POST.get('comment') or '').strip()
+        parent_id = request.POST.get('parent_id') or None
+        parent = None
+        if parent_id:
+            parent = Comment.objects.filter(pk=parent_id, blog=self.object).first()
+            # Only allow one level of nesting — replies to replies attach to the original parent.
+            if parent and parent.parent_id:
+                parent = parent.parent
         if text:
-            Comment.objects.create(user=request.user, blog=self.object, comment=text)
-            messages.success(request, 'Comment posted.')
-        return HttpResponseRedirect(request.path_info)
+            Comment.objects.create(
+                user=request.user,
+                blog=self.object,
+                comment=text,
+                parent=parent,
+            )
+            messages.success(request, 'Reply posted.' if parent else 'Comment posted.')
+        return HttpResponseRedirect(request.path_info + '#comments')
 
 
 # Backwards-compatible function wrappers for existing URL names ----------
@@ -180,3 +201,66 @@ def author_profile(request, username):
         'author_profile.html',
         {'author': author, 'posts': posts, 'post_count': posts.count()},
     )
+
+
+# Newsletter -------------------------------------------------------------
+
+@require_POST
+def newsletter_subscribe(request):
+    email = (request.POST.get('email') or '').strip().lower()
+    next_url = request.POST.get('next') or request.META.get('HTTP_REFERER') or '/'
+    try:
+        validate_email(email)
+    except ValidationError:
+        messages.error(request, 'Please enter a valid email address.')
+        return redirect(next_url)
+    sub, created = NewsletterSubscriber.objects.get_or_create(
+        email=email, defaults={'is_active': True}
+    )
+    if not created and not sub.is_active:
+        sub.is_active = True
+        sub.save(update_fields=['is_active'])
+    if created:
+        messages.success(request, "You're subscribed — welcome to BlogSphere!")
+    else:
+        messages.info(request, "You're already on the list. Thanks for sticking with us!")
+    return redirect(next_url)
+
+
+# Contact / Static info pages -------------------------------------------
+
+def contact(request):
+    if request.method == 'POST':
+        name = (request.POST.get('name') or '').strip()
+        email = (request.POST.get('email') or '').strip().lower()
+        subject = (request.POST.get('subject') or '').strip()
+        message = (request.POST.get('message') or '').strip()
+        try:
+            validate_email(email)
+        except ValidationError:
+            messages.error(request, 'Please enter a valid email address.')
+            return render(request, 'contact.html', {
+                'form_data': {'name': name, 'email': email, 'subject': subject, 'message': message},
+            })
+        if not name or not message:
+            messages.error(request, 'Name and message are required.')
+            return render(request, 'contact.html', {
+                'form_data': {'name': name, 'email': email, 'subject': subject, 'message': message},
+            })
+        ContactMessage.objects.create(
+            name=name[:100],
+            email=email,
+            subject=subject[:150],
+            message=message[:2000],
+        )
+        messages.success(request, "Thanks! Your message reached us — we'll get back soon.")
+        return redirect('contact')
+    return render(request, 'contact.html')
+
+
+def privacy(request):
+    return render(request, 'privacy.html')
+
+
+def terms(request):
+    return render(request, 'terms.html')

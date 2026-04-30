@@ -1,0 +1,31 @@
+{# Author byline card to drop at the bottom of an article. Expects `author` (User). #}
+<aside class="author-card">
+  <div class="author-card__avatar">
+    {% if author.profile.avatar %}
+    <img src="{{ author.profile.avatar.url }}" alt="{{ author.username }}">
+    {% else %}
+    <div class="author-card__avatar-fallback"><i class="fa fa-user"></i></div>
+    {% endif %}
+  </div>
+  <div class="author-card__body">
+    <p class="author-card__eyebrow">Written by</p>
+    <h4 class="author-card__name">
+      <a href="{% url 'author_profile' author.username %}">
+        {% if author.first_name or author.last_name %}{{ author.first_name }} {{ author.last_name }}{% else %}{{ author.username }}{% endif %}
+      </a>
+    </h4>
+    {% if author.profile.bio %}
+    <p class="author-card__bio">{{ author.profile.bio }}</p>
+    {% else %}
+    <p class="author-card__bio author-card__bio--empty">Storyteller and contributor at BlogSphere.</p>
+    {% endif %}
+    <div class="author-card__actions">
+      <a href="{% url 'author_profile' author.username %}" class="author-card__btn">More from {{ author.first_name|default:author.username }}</a>
+      {% if author.profile.website %}
+      <a href="{{ author.profile.website }}" target="_blank" rel="noopener" class="author-card__btn author-card__btn--ghost">
+        <i class="fa fa-link"></i> Website
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</aside>

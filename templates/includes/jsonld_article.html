@@ -1,0 +1,33 @@
+{# Article structured data for Google rich results. Expects `single_blog`. #}
+{% spaceless %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}"
+  },
+  "headline": "{{ single_blog.title|escapejs }}",
+  "description": "{{ meta_description|default:single_blog.short_description|escapejs }}",
+  {% if single_blog.featured_image %}"image": "{{ request.scheme }}://{{ request.get_host }}{{ single_blog.featured_image.url }}",{% endif %}
+  "datePublished": "{{ single_blog.created_at|date:'c' }}",
+  "dateModified": "{{ single_blog.updated_at|date:'c' }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ single_blog.author.get_full_name|default:single_blog.author.username|escapejs }}",
+    "url": "{{ request.scheme }}://{{ request.get_host }}{% url 'author_profile' single_blog.author.username %}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BlogSphere",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ request.scheme }}://{{ request.get_host }}{% load static %}{% static 'images/logo.png' %}"
+    }
+  },
+  "articleSection": "{{ single_blog.category.category_name|escapejs }}",
+  "keywords": "{% for t in post_tags %}{{ t.name|escapejs }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+}
+</script>
+{% endspaceless %}

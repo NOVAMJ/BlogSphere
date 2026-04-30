@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<article class="legal-page">
+  <header class="legal-page__header">
+    <p class="legal-page__eyebrow">Legal</p>
+    <h1 class="legal-page__title">Terms of Service</h1>
+    <p class="legal-page__updated">Last updated: {% now "F j, Y" %}</p>
+  </header>
+
+  <section>
+    <h2>1. Acceptance</h2>
+    <p>By using BlogSphere you agree to these terms. If you don't agree, please don't use the site.</p>
+  </section>
+
+  <section>
+    <h2>2. Your account</h2>
+    <p>You're responsible for keeping your login credentials safe and for the activity that happens under your account. Don't impersonate other people or organizations.</p>
+  </section>
+
+  <section>
+    <h2>3. Content you post</h2>
+    <p>You retain ownership of comments and posts you submit. By submitting them, you grant BlogSphere a non-exclusive, worldwide license to display them on the site. You agree not to post content that is unlawful, hateful, harassing, defamatory, or infringes anyone's rights.</p>
+  </section>
+
+  <section>
+    <h2>4. Moderation</h2>
+    <p>We may remove content or suspend accounts that violate these terms, at our sole discretion. We aim to be fair but reserve final judgement.</p>
+  </section>
+
+  <section>
+    <h2>5. Disclaimer</h2>
+    <p>BlogSphere is provided "as is" without warranties of any kind. We do our best to keep the site running and the content accurate, but we can't promise either.</p>
+  </section>
+
+  <section>
+    <h2>6. Changes</h2>
+    <p>We may update these terms occasionally. Material changes will be communicated through the site.</p>
+  </section>
+
+  <section>
+    <h2>7. Contact</h2>
+    <p>Questions about these terms? <a href="{% url 'contact' %}">Get in touch</a>.</p>
+  </section>
+</article>
+{% endblock %}

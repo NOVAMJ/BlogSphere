@@ -1,0 +1,67 @@
+{% load static %}
+<footer class="site-footer">
+  <div class="site-footer__inner">
+
+    <div class="site-footer__col site-footer__brand">
+      <a href="/" class="site-footer__logo-link" aria-label="BlogSphere — home">
+        <img src="{% static 'images/logo.png' %}" alt="BlogSphere" class="site-footer__logo">
+      </a>
+      <p class="site-footer__tagline">Stories worth your time — across Sports, Politics, Technology, Business, Health and Science.</p>
+      {% if social_links %}
+      <div class="site-footer__social">
+        {% for s in social_links %}
+        <a href="{{ s.link }}" target="_blank" rel="noopener" aria-label="{{ s.platform }}">
+          <i class="fa fa-{{ s.platform|lower }}"></i>
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="site-footer__col">
+      <h6 class="site-footer__heading">Explore</h6>
+      <ul class="site-footer__links">
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'post_list' %}">All Posts</a></li>
+        <li><a href="/sitemap.xml">Sitemap</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h6 class="site-footer__heading">Categories</h6>
+      <ul class="site-footer__links">
+        {% for cat in categories|slice:":6" %}
+        <li><a href="{% url 'posts_by_category' cat.id %}">{{ cat.category_name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h6 class="site-footer__heading">Company</h6>
+      <ul class="site-footer__links">
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy</a></li>
+        <li><a href="{% url 'terms' %}">Terms</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__col site-footer__newsletter">
+      <h6 class="site-footer__heading">Get the weekly digest</h6>
+      <p class="site-footer__newsletter-blurb">A handpicked email — the best stories of the week, straight to your inbox.</p>
+      <form action="{% url 'newsletter_subscribe' %}" method="POST" class="site-footer__newsletter-form">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <input type="email" name="email" placeholder="you@example.com" required aria-label="Your email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="site-footer__bottom">
+    <span>© {% now "Y" %} BlogSphere. Made with <span aria-label="love" style="color:#e25555">&#10084;&#65039;</span> by Mridul Jindal.</span>
+    <span class="site-footer__legal">
+      <a href="{% url 'privacy' %}">Privacy</a> · <a href="{% url 'terms' %}">Terms</a> · <a href="{% url 'contact' %}">Contact</a>
+    </span>
+  </div>
+</footer>

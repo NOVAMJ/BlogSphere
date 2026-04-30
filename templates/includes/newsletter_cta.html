@@ -1,0 +1,16 @@
+{# Reusable hero-style newsletter signup. Drop into any page. #}
+<section class="newsletter-cta">
+  <div class="newsletter-cta__inner">
+    <div class="newsletter-cta__copy">
+      <h3 class="newsletter-cta__title">Don't miss the next great story.</h3>
+      <p class="newsletter-cta__lede">Join readers getting our weekly digest — handpicked, ad-free, and short enough to actually finish.</p>
+    </div>
+    <form action="{% url 'newsletter_subscribe' %}" method="POST" class="newsletter-cta__form">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.path }}">
+      <label class="sr-only" for="newsletter-cta-email">Email address</label>
+      <input id="newsletter-cta-email" type="email" name="email" placeholder="you@example.com" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>

@@ -170,6 +170,7 @@ TEMPLATES = [
                 'blogs.context_processors.get_categories',
                 'blogs.context_processors.get_social_links',
                 'blogs.context_processors.oauth_flags',
+                'blogs.context_processors.popular_tags',
             ],
         },
     },

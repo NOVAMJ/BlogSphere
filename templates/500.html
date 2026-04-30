@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="error-page">
+  <div class="error-page__code">500</div>
+  <h1 class="error-page__title">Something broke on our end.</h1>
+  <p class="error-page__lede">We're already looking into it. Please try again in a moment — and if it keeps happening, let us know.</p>
+  <div class="error-page__actions">
+    <a href="/" class="btn btn-warning">Back to homepage</a>
+    <a href="{% url 'contact' %}" class="btn btn-outline-secondary">Report an issue</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<article class="legal-page">
+  <header class="legal-page__header">
+    <p class="legal-page__eyebrow">Legal</p>
+    <h1 class="legal-page__title">Privacy Policy</h1>
+    <p class="legal-page__updated">Last updated: {% now "F j, Y" %}</p>
+  </header>
+
+  <section>
+    <h2>Who we are</h2>
+    <p>BlogSphere is an editorial publication operated by Mridul Jindal. This page explains what information we collect when you use our site and how we use it.</p>
+  </section>
+
+  <section>
+    <h2>Information we collect</h2>
+    <ul>
+      <li><strong>Account information.</strong> If you create an account, we store your username, email and (optionally) profile bio, avatar and website link.</li>
+      <li><strong>Newsletter subscription.</strong> If you subscribe to our newsletter, we store only your email address.</li>
+      <li><strong>Engagement data.</strong> We record likes, comments, and aggregate page-view counts on posts to surface popular stories.</li>
+      <li><strong>Cookies.</strong> We use a small number of essential cookies to keep you signed in and remember your dark/light mode choice. We do not use third-party advertising cookies.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>How we use information</h2>
+    <p>We use the information above to operate the site — letting you log in, leave comments, receive the newsletter, and helping us understand which stories resonate. We do not sell your personal data.</p>
+  </section>
+
+  <section>
+    <h2>Third-party sign-in</h2>
+    <p>If you sign in with Google or GitHub, we receive your name, email and avatar from that provider so we can create or look up your account. We never see your password.</p>
+  </section>
+
+  <section>
+    <h2>Your choices</h2>
+    <ul>
+      <li>You can unsubscribe from the newsletter at any time using the link in any newsletter email.</li>
+      <li>You can request deletion of your account and associated data by contacting us via the <a href="{% url 'contact' %}">contact page</a>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Questions? Reach us through the <a href="{% url 'contact' %}">contact page</a>.</p>
+  </section>
+</article>
+{% endblock %}

@@ -32,10 +32,11 @@
     {% endblock meta %}
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <link href="{% static 'css/blog.css' %}?v=5" rel="stylesheet">
+    <link href="{% static 'css/blog.css' %}?v=6" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
     <link rel="apple-touch-icon" href="{% static 'images/favicon.png' %}">
+    {% block jsonld %}{% endblock jsonld %}
     <script>
       // Apply saved theme as early as possible to avoid a flash
       (function () {
@@ -93,17 +94,15 @@
       </div>
 
 <!-- Main Content Part -->
+{% include "includes/messages.html" %}
+
 {% block content %}
 
 {% endblock %}
-
-<!-- Footer Part -->
-{% if request.path == '/' and not user.is_authenticated %}
-<footer class="blog-footer">
-    <p class="mb-0">BlogSphere made with love <span style="color:#e25555;">&#10084;&#65039;</span> by Mridul Jindal</p>
-  </footer>
-{% endif %}
   </div>
+
+  <!-- Footer -->
+  {% include "includes/footer.html" %}
 
   <script>
     (function () {

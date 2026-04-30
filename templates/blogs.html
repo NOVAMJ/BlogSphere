@@ -1,37 +1,43 @@
 {% extends 'base.html' %}
 
+{% block jsonld %}{% include "includes/jsonld_article.html" %}{% endblock %}
+
 {% block content %}
+
+<!-- Reading progress bar -->
+<div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
 
 <!-- Page content-->
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-8">
             <!-- Post content-->
-            <article>
+            <article class="article-body">
                 <!-- Post header-->
-                <header class="mb-4">
-                    <h1 class="fw-bolder mb-1">{{ single_blog.title }}</h1>
-                    <div class="text-muted fst-italic mb-2">
-                        Posted on {{ single_blog.created_at|date:"M j, Y" }} by
-                        <a href="{% url 'author_profile' single_blog.author.username %}">{{ single_blog.author }}</a>
-                        <span class="mx-1">·</span>
+                <header class="article-header mb-4">
+                    <a class="article-header__category" href="{% url 'posts_by_category' single_blog.category.id %}">{{ single_blog.category }}</a>
+                    <h1 class="article-header__title">{{ single_blog.title }}</h1>
+                    <p class="article-header__lede">{{ single_blog.short_description }}</p>
+                    <div class="article-header__meta">
+                        <span>By <a href="{% url 'author_profile' single_blog.author.username %}">{{ single_blog.author.get_full_name|default:single_blog.author.username }}</a></span>
+                        <span class="dot">·</span>
+                        <span>{{ single_blog.created_at|date:"M j, Y" }}</span>
+                        <span class="dot">·</span>
                         <span><i class="fa fa-clock-o"></i> {{ single_blog.reading_time }} min read</span>
-                        <span class="mx-1">·</span>
+                        <span class="dot">·</span>
                         <span><i class="fa fa-eye"></i> {{ single_blog.views }} view{{ single_blog.views|pluralize }}</span>
                     </div>
-                    <a class="badge bg-warning text-decoration-none text-light" href="{% url 'posts_by_category' single_blog.category.id %}">{{ single_blog.category }}</a>
-                    {% for tag in post_tags %}
-                    <a href="{% url 'posts_by_tag' tag.slug %}" class="badge badge-pill badge-light border ml-1" style="text-decoration:none;">#{{ tag.name }}</a>
-                    {% endfor %}
                 </header>
 
                 <!-- Featured image-->
                 {% if single_blog.featured_image %}
-                <figure class="mb-4"><img class="img-fluid rounded" src="{{ single_blog.featured_image.url }}" alt="{{ single_blog.title }}" /></figure>
+                <figure class="article-figure mb-4">
+                    <img class="img-fluid rounded" src="{{ single_blog.featured_image.url }}" alt="{{ single_blog.title }}" />
+                </figure>
                 {% endif %}
 
                 <!-- Like button -->
-                <div class="mb-4 d-flex align-items-center">
+                <div class="mb-3 d-flex align-items-center">
                     {% if user.is_authenticated %}
                     <button id="like-btn"
                             data-url="{% url 'like_blog' single_blog.slug %}"
@@ -50,119 +56,240 @@
                 {% include "includes/share.html" with share_title=single_blog.title share_url=request.build_absolute_uri %}
 
                 <!-- Post content-->
-                <section class="mb-5 mt-4">
-                    <p class="fs-5 mb-4">{{ single_blog.short_description }}</p>
-                    <div class="blog-body fs-5 mb-4">{{ single_blog.blog_body|safe }}</div>
+                <section class="article-content mb-5 mt-4">
+                    <div class="blog-body">{{ single_blog.blog_body|safe }}</div>
 
-                    <div class="mt-4 mb-4">
+                    {% if post_tags %}
+                    <div class="article-tags mt-4">
+                        <span class="article-tags__label">Tags:</span>
+                        {% for tag in post_tags %}
+                        <a href="{% url 'posts_by_tag' tag.slug %}" class="tag-chip">#{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="mt-4 mb-2">
                         {% include "includes/share.html" with share_title=single_blog.title share_url=request.build_absolute_uri %}
                     </div>
+                </section>
 
-                    <!-- Comments -->
-                    <h4>Comments ({{ comment_count }})</h4>
-                    {% if comments %}
-                        {% for comment in comments %}
-                            <div class="card mt-1">
-                                <div class="card-body">
-                                    <p class="card-text mb-0">{{ comment.comment }}</p>
-                                    <span>
-                                        <small>By {{ comment.user }}</small>
-                                        <small>| {{ comment.created_at|timesince }} ago</small>
-                                        {% if user.is_authenticated and comment.user_id == user.id or perms.blogs.delete_comment or user.is_superuser %}
-                                        <form method="POST" action="{% url 'delete_comment' comment.id %}" class="d-inline" onsubmit="return confirm('Delete this comment?');">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-link btn-sm text-danger p-0 ml-2"><i class="fa fa-trash"></i></button>
-                                        </form>
-                                        {% endif %}
-                                    </span>
-                                </div>
-                            </div>
-                        {% endfor %}
+                <!-- Author byline -->
+                {% include "includes/author_byline.html" with author=single_blog.author %}
+
+                <!-- Comments -->
+                <section id="comments" class="comments-section mt-5">
+                    <h3 class="comments-section__title">Comments <span class="comments-section__count">({{ comment_count }})</span></h3>
+
+                    {% if user.is_authenticated %}
+                    <form action="" method="POST" class="comment-form">
+                        {% csrf_token %}
+                        <textarea name="comment" rows="3" placeholder="Share your thoughts…" required maxlength="250"></textarea>
+                        <button type="submit" class="comment-form__submit">Post comment</button>
+                    </form>
                     {% else %}
-                    No comments yet.
+                    <p class="comment-form__signin"><a href="{% url 'login' %}?next={{ request.path }}">Login</a> to join the conversation.</p>
                     {% endif %}
-                    <br>
-                    <div class="form-group">
-                        {% if user.is_authenticated %}
-                        <form action="" method="POST">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <textarea name="comment" class="form-control" placeholder="Write your comment" required></textarea>
-                                <input type="submit" value="Submit" class="btn btn-primary mt-2">
-                            </div>
-                        </form>
-                        {% else %}
-                        <p>Please <span><a href="{% url 'login' %}?next={{ request.path }}">login</a></span> to write a comment!</p>
-                        {% endif %}
-                    </div>
 
+                    {% if comments %}
+                    <ul class="comment-list">
+                        {% for c in comments %}
+                        <li class="comment">
+                            <div class="comment__avatar">
+                                {% if c.user.profile.avatar %}
+                                <img src="{{ c.user.profile.avatar.url }}" alt="{{ c.user.username }}">
+                                {% else %}
+                                <div class="comment__avatar-fallback">{{ c.user.username|first|upper }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="comment__body">
+                                <div class="comment__head">
+                                    <a href="{% url 'author_profile' c.user.username %}" class="comment__author">{{ c.user.get_full_name|default:c.user.username }}</a>
+                                    <span class="comment__time">{{ c.created_at|timesince }} ago</span>
+                                </div>
+                                <p class="comment__text">{{ c.comment }}</p>
+                                <div class="comment__actions">
+                                    {% if user.is_authenticated %}
+                                    <button type="button" class="comment__action" data-reply-to="{{ c.id }}" data-reply-name="{{ c.user.username }}">
+                                        <i class="fa fa-reply"></i> Reply
+                                    </button>
+                                    {% endif %}
+                                    {% if user.is_authenticated and c.user_id == user.id or perms.blogs.delete_comment or user.is_superuser %}
+                                    <form method="POST" action="{% url 'delete_comment' c.id %}" class="d-inline" onsubmit="return confirm('Delete this comment?');">
+                                        {% csrf_token %}
+                                        <button type="submit" class="comment__action comment__action--danger"><i class="fa fa-trash"></i> Delete</button>
+                                    </form>
+                                    {% endif %}
+                                </div>
+
+                                {# Inline reply form (hidden by default, toggled by JS) #}
+                                {% if user.is_authenticated %}
+                                <form method="POST" action="" class="comment-reply-form" data-reply-form-for="{{ c.id }}" hidden>
+                                    {% csrf_token %}
+                                    <input type="hidden" name="parent_id" value="{{ c.id }}">
+                                    <textarea name="comment" rows="2" placeholder="Reply to {{ c.user.username }}…" required maxlength="250"></textarea>
+                                    <div class="comment-reply-form__actions">
+                                        <button type="button" class="comment-reply-form__cancel" data-cancel-reply="{{ c.id }}">Cancel</button>
+                                        <button type="submit" class="comment-reply-form__submit">Post reply</button>
+                                    </div>
+                                </form>
+                                {% endif %}
+
+                                {% if c.replies.all %}
+                                <ul class="comment-list comment-list--replies">
+                                    {% for r in c.replies.all %}
+                                    <li class="comment comment--reply">
+                                        <div class="comment__avatar">
+                                            {% if r.user.profile.avatar %}
+                                            <img src="{{ r.user.profile.avatar.url }}" alt="{{ r.user.username }}">
+                                            {% else %}
+                                            <div class="comment__avatar-fallback">{{ r.user.username|first|upper }}</div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="comment__body">
+                                            <div class="comment__head">
+                                                <a href="{% url 'author_profile' r.user.username %}" class="comment__author">{{ r.user.get_full_name|default:r.user.username }}</a>
+                                                <span class="comment__time">{{ r.created_at|timesince }} ago</span>
+                                            </div>
+                                            <p class="comment__text">{{ r.comment }}</p>
+                                            {% if user.is_authenticated and r.user_id == user.id or perms.blogs.delete_comment or user.is_superuser %}
+                                            <div class="comment__actions">
+                                                <form method="POST" action="{% url 'delete_comment' r.id %}" class="d-inline" onsubmit="return confirm('Delete this reply?');">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="comment__action comment__action--danger"><i class="fa fa-trash"></i> Delete</button>
+                                                </form>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p class="comments-empty">No comments yet — be the first to share your thoughts.</p>
+                    {% endif %}
                 </section>
             </article>
 
             {% if related_posts %}
-            <section class="mb-5">
-                <h4 class="text-uppercase text-warning mb-3" style="letter-spacing:2px;">Related Posts</h4>
+            <section class="related-section mb-5">
+                <h3 class="section-heading">You might also like</h3>
                 <div class="row">
                     {% for rp in related_posts %}
                     <div class="col-md-4 mb-3">
-                        <div class="card h-100">
-                            {% if rp.featured_image %}
-                            <a href="{% url 'blogs' rp.slug %}">
-                                <img src="{{ rp.featured_image.url }}" class="card-img-top" alt="{{ rp.title }}" style="object-fit:cover;height:140px;">
-                            </a>
-                            {% endif %}
-                            <div class="card-body">
-                                <h6 class="card-title mb-1"><a href="{% url 'blogs' rp.slug %}">{{ rp.title }}</a></h6>
-                                <small class="text-muted">{{ rp.created_at|timesince }} ago</small>
-                            </div>
+                      <article class="post-card h-100">
+                        {% if rp.featured_image %}
+                        <a class="post-card__image-link" href="{% url 'blogs' rp.slug %}">
+                            <img src="{{ rp.featured_image.url }}" class="post-card__image" alt="{{ rp.title }}" loading="lazy">
+                        </a>
+                        {% endif %}
+                        <div class="post-card__body">
+                          <span class="post-card__category">{{ rp.category.category_name }}</span>
+                          <h4 class="post-card__title"><a href="{% url 'blogs' rp.slug %}">{{ rp.title }}</a></h4>
+                          <div class="post-card__meta">
+                            <span>{{ rp.created_at|timesince }} ago</span>
+                            <span class="dot">·</span>
+                            <span><i class="fa fa-clock-o"></i> {{ rp.reading_time }} min</span>
+                          </div>
                         </div>
+                      </article>
                     </div>
                     {% endfor %}
                 </div>
             </section>
             {% endif %}
         </div>
+
         <!-- Side widgets-->
         <div class="col-lg-4">
-            <div class="card mb-4 p-3">
+            <div class="sidebar-card p-3 mb-3 rounded">
                 <h4 class="font-italic">Categories</h4>
-                <div class="card-body">
-                    <ul class="list-unstyled mb-0">
-                        {% for cat in categories %}
-                        <li><a href="{% url 'posts_by_category' cat.id %}">{{ cat.category_name }}</a></li>
-                        {% endfor %}
-                    </ul>
+                <ul class="list-unstyled mb-0">
+                    {% for cat in categories %}
+                    <li class="mb-1"><a href="{% url 'posts_by_category' cat.id %}">{{ cat.category_name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            {% if popular_tags %}
+            <div class="sidebar-card p-3 mb-3 rounded">
+                <h4 class="font-italic">Popular Tags</h4>
+                <div class="tag-cloud">
+                    {% for t in popular_tags %}
+                    <a href="{% url 'posts_by_tag' t.slug %}" class="tag-chip">#{{ t.name }}</a>
+                    {% endfor %}
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
 
 <script>
 (function() {
+    // ----- Like button -----
     const btn = document.getElementById('like-btn');
-    if (!btn) return;
-    btn.addEventListener('click', async function() {
-        const url = btn.dataset.url;
-        const csrf = document.querySelector('input[name="csrfmiddlewaretoken"]')?.value
-            || (document.cookie.match(/csrftoken=([^;]+)/) || [])[1];
-        try {
-            const resp = await fetch(url, {
-                method: 'POST',
-                credentials: 'same-origin',
-                headers: {
-                    'X-CSRFToken': csrf,
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'Accept': 'application/json',
-                },
-            });
-            if (!resp.ok) { return; }
-            const data = await resp.json();
-            document.getElementById('like-count').textContent = data.total_likes;
-            document.getElementById('like-label').textContent = data.liked ? 'Unlike' : 'Like';
-            btn.classList.toggle('btn-danger', data.liked);
-            btn.classList.toggle('btn-outline-danger', !data.liked);
-        } catch (e) { /* ignore */ }
+    if (btn) {
+        btn.addEventListener('click', async function() {
+            const url = btn.dataset.url;
+            const csrf = document.querySelector('input[name="csrfmiddlewaretoken"]')?.value
+                || (document.cookie.match(/csrftoken=([^;]+)/) || [])[1];
+            try {
+                const resp = await fetch(url, {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                        'X-CSRFToken': csrf,
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json',
+                    },
+                });
+                if (!resp.ok) return;
+                const data = await resp.json();
+                document.getElementById('like-count').textContent = data.total_likes;
+                document.getElementById('like-label').textContent = data.liked ? 'Unlike' : 'Like';
+                btn.classList.toggle('btn-danger', data.liked);
+                btn.classList.toggle('btn-outline-danger', !data.liked);
+            } catch (e) { /* ignore */ }
+        });
+    }
+
+    // ----- Reading progress bar -----
+    const bar = document.getElementById('reading-progress');
+    const article = document.querySelector('.article-body');
+    if (bar && article) {
+        const update = () => {
+            const rect = article.getBoundingClientRect();
+            const total = article.offsetHeight - window.innerHeight;
+            const scrolled = Math.min(Math.max(-rect.top, 0), Math.max(total, 1));
+            const pct = total > 0 ? (scrolled / total) * 100 : 0;
+            bar.style.width = pct + '%';
+        };
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        update();
+    }
+
+    // ----- Reply toggles -----
+    document.querySelectorAll('[data-reply-to]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const id = btn.dataset.replyTo;
+            const form = document.querySelector(`[data-reply-form-for="${id}"]`);
+            if (!form) return;
+            form.hidden = false;
+            const ta = form.querySelector('textarea');
+            if (ta) ta.focus();
+        });
+    });
+    document.querySelectorAll('[data-cancel-reply]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const id = btn.dataset.cancelReply;
+            const form = document.querySelector(`[data-reply-form-for="${id}"]`);
+            if (form) form.hidden = true;
+        });
     });
 })();
 </script>

@@ -35,6 +35,12 @@ urlpatterns = [
     path('comments/<int:pk>/delete/', BlogsView.delete_comment, name='delete_comment'),
     # Search endpoint
     path('search/', BlogsView.search, name='search'),
+
+    # Newsletter + static info pages
+    path('subscribe/', BlogsView.newsletter_subscribe, name='newsletter_subscribe'),
+    path('contact/', BlogsView.contact, name='contact'),
+    path('privacy/', BlogsView.privacy, name='privacy'),
+    path('terms/', BlogsView.terms, name='terms'),
     path('register/', views.register, name='register'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),

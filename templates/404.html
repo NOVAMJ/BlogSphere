@@ -1,1 +1,12 @@
-<p>The category does not exist.</p>
+{% extends 'base.html' %}
+{% block content %}
+<section class="error-page">
+  <div class="error-page__code">404</div>
+  <h1 class="error-page__title">This page wandered off.</h1>
+  <p class="error-page__lede">The story you were looking for isn't here — maybe it was moved, or maybe it never existed. Let's get you back to something good.</p>
+  <div class="error-page__actions">
+    <a href="/" class="btn btn-warning">Back to homepage</a>
+    <a href="{% url 'post_list' %}" class="btn btn-outline-secondary">Browse all posts</a>
+  </div>
+</section>
+{% endblock %}
