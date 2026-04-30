@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+    'django.contrib.sites',
     'blogs',
     'assignments',
     'crispy_forms',
@@ -65,7 +66,55 @@ INSTALLED_APPS = [
     'dashboards',
     'ckeditor',
     'ckeditor_uploader',
+    # OAuth / social login
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
 ]
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# allauth configuration
+ACCOUNT_LOGIN_METHODS = {'username', 'email'}
+ACCOUNT_SIGNUP_FIELDS = ['username*', 'email*', 'password1*', 'password2*']
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+# OAuth provider credentials are pulled from environment variables.
+# Buttons in the templates are conditionally rendered based on whether
+# the corresponding *_CLIENT_ID env var is set.
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APPS': [{
+            'client_id': os.environ.get('GOOGLE_OAUTH_CLIENT_ID', ''),
+            'secret': os.environ.get('GOOGLE_OAUTH_CLIENT_SECRET', ''),
+            'key': '',
+        }],
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+    },
+    'github': {
+        'APPS': [{
+            'client_id': os.environ.get('GITHUB_OAUTH_CLIENT_ID', ''),
+            'secret': os.environ.get('GITHUB_OAUTH_CLIENT_SECRET', ''),
+            'key': '',
+        }],
+        'SCOPE': ['read:user', 'user:email'],
+    },
+}
+
+GOOGLE_OAUTH_ENABLED = bool(os.environ.get('GOOGLE_OAUTH_CLIENT_ID'))
+GITHUB_OAUTH_ENABLED = bool(os.environ.get('GITHUB_OAUTH_CLIENT_ID'))
 
 # CKEditor
 CKEDITOR_UPLOAD_PATH = 'uploads/ckeditor/'
@@ -98,6 +147,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'blog_main.urls'
@@ -115,6 +165,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'blogs.context_processors.get_categories',
                 'blogs.context_processors.get_social_links',
+                'blogs.context_processors.oauth_flags',
             ],
         },
     },

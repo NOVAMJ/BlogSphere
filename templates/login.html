@@ -9,6 +9,8 @@
     {% csrf_token %}
     {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
     {{ form | crispy }}
-    <button type="submit" class="btn btn-warning">Login</button>
+    <button type="submit" class="btn btn-warning btn-block">Login</button>
 </form>
+
+{% include 'includes/oauth_buttons.html' %}
 {% endblock %}

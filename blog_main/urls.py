@@ -39,6 +39,9 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
 
+    # Social OAuth (Google, GitHub) via django-allauth
+    path('accounts/', include('allauth.urls')),
+
     # CKEditor uploader (image upload inside the editor)
     path('ckeditor/', include('ckeditor_uploader.urls')),
 

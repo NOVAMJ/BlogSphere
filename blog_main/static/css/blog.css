@@ -567,3 +567,58 @@ article .card:hover { transform: none; box-shadow: var(--shadow); }
 }
 .sidebar-card h4 { color: var(--text); }
 .sidebar-card p  { color: var(--text-muted); }
+
+/* =========================================================
+   OAuth (social login) buttons
+   ========================================================= */
+.oauth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin: 1rem 0;
+}
+.oauth-divider::before,
+.oauth-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--border);
+}
+.oauth-divider span { padding: 0 .75rem; }
+
+.oauth-buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .6rem;
+}
+@media (min-width: 480px) {
+  .oauth-buttons { grid-template-columns: 1fr 1fr; }
+}
+
+.oauth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  padding: .6rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--bg-elev);
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, border-color .15s ease;
+}
+.oauth-btn:hover {
+  text-decoration: none;
+  color: var(--text);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+}
+.oauth-btn--google:hover  { border-color: #4285F4; }
+.oauth-btn--github        { color: var(--text); }
+.oauth-btn--github:hover  { background-color: #24292f; color: #fff; border-color: #24292f; }
+[data-theme="dark"] .oauth-btn--github:hover { background-color: #f0f6fc; color: #24292f; border-color: #f0f6fc; }
