@@ -43,3 +43,10 @@ run = ["gunicorn", "--bind=0.0.0.0:5000", "--reuse-port", "blog_main.wsgi:applic
 
 [userenv.production]
 DEBUG = "False"
+
+[userenv.shared]
+EMAIL_HOST = "smtp.resend.com"
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = "resend"
+EMAIL_USE_TLS = "True"
+DEFAULT_FROM_EMAIL = "BlogSphere <noreply@mriduldev.xyz>"
