@@ -29,7 +29,18 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True').lower() in ('true', '1', 'yes')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'mriduldev.xyz',
+    'www.mriduldev.xyz',
+    'localhost',
+    '127.0.0.1',
+]
+
+# Replit adds REPLIT_DOMAINS at runtime (e.g. "abc.replit.dev,xyz.replit.app").
+# We split and add each one automatically so both dev and deployed URLs work.
+_replit_domains = os.environ.get('REPLIT_DOMAINS', '')
+if _replit_domains:
+    ALLOWED_HOSTS += [d.strip() for d in _replit_domains.split(',') if d.strip()]
 
 # Public site URL used for absolute links in sitemap, OG tags, etc.
 SITE_URL = os.environ.get('SITE_URL', 'https://mriduldev.xyz').rstrip('/')
@@ -256,3 +267,29 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# ---------------------------------------------------------------------------
+# Email
+# ---------------------------------------------------------------------------
+# In development: print emails to the console so password-reset links appear
+# in the terminal without needing a real mail server.
+# In production: set EMAIL_HOST / EMAIL_HOST_USER / EMAIL_HOST_PASSWORD /
+# EMAIL_PORT / EMAIL_USE_TLS as Replit secrets to switch to a real SMTP
+# provider (e.g. Gmail, SendGrid, Mailgun).
+if os.environ.get('EMAIL_HOST'):
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.environ.get('EMAIL_HOST')
+    EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+    EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').lower() in ('true', '1', 'yes')
+    DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'BlogSphere <noreply@mriduldev.xyz>'
+
+# ---------------------------------------------------------------------------
+# Login rate limiting — max failed attempts before temporary lockout
+# ---------------------------------------------------------------------------
+LOGIN_MAX_ATTEMPTS = 5          # failed attempts before lockout
+LOGIN_LOCKOUT_SECONDS = 60      # lockout duration in seconds

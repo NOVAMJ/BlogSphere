@@ -23,6 +23,11 @@ from django.conf import settings
 from blogs import views as BlogsView
 from blogs.sitemaps import SITEMAPS
 
+# Custom error handlers
+handler403 = 'blog_main.views.error_403'
+handler404 = 'blog_main.views.error_404'
+handler500 = 'blog_main.views.error_500'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),

@@ -76,6 +76,12 @@ Group membership is assigned via the Django admin or `/dashboard/users/`.
 - `/comments/<id>/delete/` — delete comment (POST).
 
 ## Recent Changes
+- 2026-05-01: **Production hardening.** Four changes applied:
+  1. **`DEBUG` / `SECRET_KEY`** — `DEBUG=False` set as a production env var; a strong `SECRET_KEY` stored in Replit secrets (overrides the insecure dev default).
+  2. **`ALLOWED_HOSTS` lockdown** — replaced `['*']` with an explicit allowlist (`mriduldev.xyz`, `www.mriduldev.xyz`, `localhost`). Replit's `REPLIT_DOMAINS` runtime variable is parsed automatically so dev and deployed URLs are always added dynamically — no manual updates needed.
+  3. **Email backend** — console backend in dev (password-reset links print to terminal); switches to SMTP automatically when `EMAIL_HOST` secret is set. Ready for Gmail/SendGrid/Mailgun with zero code changes.
+  4. **Login throttle** — session-based brute-force protection (5 failed attempts → 60-second lockout). No Redis/Memcached required. Shows the custom 403 page with a "try again" message. Counter resets on successful login.
+  5. **Custom error pages** — 403 (rate-limited / forbidden), 404 (page not found), 500 (server error) all return themed on-brand pages matching the site design.
 - 2026-04-30: **"Suggest as Featured" workflow.** New `Blog.feature_requested` boolean (migration `0012_blog_feature_requested.py`). The `BlogPostForm` now shows role-aware fields: Authors see only the **"Suggest as Featured"** checkbox (`feature_requested`); Admin/Manager/Editor see only the real **"Is featured"** toggle. Approving (ticking `is_featured`) auto-clears `feature_requested`. Pending requests surface in two places: a yellow "Requested" badge in `/dashboard/posts/` and an alert + count on the dashboard home (`is_priv` users only). The edit-post page also shows a banner when an Author has requested featuring.
 - 2026-04-30: Auto-assign new sign-ups to the **Author** group via a `post_save` signal in `blogs/signals.py` (wired in `blogs/apps.py`'s `ready()`). This covers the regular `/register/` form, social login (Google/GitHub), and admin-created users. Superusers/staff are skipped. Existing users without a group were backfilled into Author. Result: any newly registered user can immediately add their own posts at `/dashboard/posts/add/`.
 - 2026-04-30: Brand identity — added a custom BlogSphere logo (globe + quill, brand amber/gold) at `blog_main/static/images/logo.png`, served as the header logo and as the site favicon. Header now uses the image instead of the text wordmark.
