@@ -292,4 +292,4 @@ else:
 # Login rate limiting — max failed attempts before temporary lockout
 # ---------------------------------------------------------------------------
 LOGIN_MAX_ATTEMPTS = 5          # failed attempts before lockout
-LOGIN_LOCKOUT_SECONDS = 60      # lockout duration in seconds
+LOGIN_LOCKOUT_SECONDS = 300     # lockout duration in seconds (5 minutes)
