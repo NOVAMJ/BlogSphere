@@ -44,6 +44,16 @@ A Django-based blogging platform with categories, blog posts, comments, user aut
 - `/robots.txt` — Crawler rules
 - `/admin/` — Django built-in admin
 
+## Email Setup (future)
+To enable real email sending (password reset, contact form), set these Replit secrets:
+- `EMAIL_HOST` = `smtp.resend.com` (or `smtp.sendgrid.net`)
+- `EMAIL_PORT` = `587`
+- `EMAIL_HOST_USER` = `resend` (or `apikey` for SendGrid)
+- `EMAIL_HOST_PASSWORD` = your API key
+- `EMAIL_USE_TLS` = `True`
+- `DEFAULT_FROM_EMAIL` = `BlogSphere <noreply@mriduldev.xyz>`
+No code changes needed — settings.py already reads these automatically.
+
 ## Environment Variables (production)
 Override these before deploying. Sensible dev defaults are used when unset.
 - `SECRET_KEY` — Django secret key (required for production)
