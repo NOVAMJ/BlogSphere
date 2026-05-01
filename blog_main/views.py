@@ -37,7 +37,7 @@ def _record_failed_login(request):
         request.session['login_lockout_until'] = time.time() + lockout_seconds
 
 def home(request):
-    featured_posts = Blog.objects.filter(is_featured=True, status='Published').order_by('updated_at')
+    featured_posts = Blog.objects.filter(is_featured=True, status='Published').order_by('-updated_at')
     posts = Blog.objects.filter(is_featured=False, status='Published')
     
     # Fetch about us
