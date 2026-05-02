@@ -6,7 +6,7 @@ A Django-based blogging platform with categories, blog posts, comments, user aut
 ## Tech Stack
 - **Language**: Python 3.12
 - **Framework**: Django 6.0
-- **Database**: SQLite (`db.sqlite3`)
+- **Database**: PostgreSQL (Replit built-in via `DATABASE_URL`; falls back to SQLite locally)
 - **Forms**: django-crispy-forms with crispy-bootstrap4
 - **Rich-text editor**: django-ckeditor (with built-in image uploader)
 - **Image processing**: Pillow

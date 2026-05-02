@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,6 +42,11 @@ ALLOWED_HOSTS = [
 _replit_domains = os.environ.get('REPLIT_DOMAINS', '')
 if _replit_domains:
     ALLOWED_HOSTS += [d.strip() for d in _replit_domains.split(',') if d.strip()]
+
+# Render sets RENDER_EXTERNAL_HOSTNAME for the deployed service URL.
+_render_host = os.environ.get('RENDER_EXTERNAL_HOSTNAME', '')
+if _render_host:
+    ALLOWED_HOSTS.append(_render_host)
 
 # Public site URL used for absolute links in sitemap, OG tags, etc.
 SITE_URL = os.environ.get('SITE_URL', 'https://mriduldev.xyz').rstrip('/')
@@ -191,14 +197,21 @@ WSGI_APPLICATION = 'blog_main.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Use DATABASE_URL env var if set (Render PostgreSQL), otherwise fall back to SQLite.
+if os.environ.get('DATABASE_URL'):
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ.get('DATABASE_URL'),
+            conn_max_age=600,
+        )
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation

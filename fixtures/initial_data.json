@@ -1,0 +1,2091 @@
+[
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Manager",
+    "permissions": [
+      [
+        "add_user",
+        "auth",
+        "user"
+      ],
+      [
+        "change_user",
+        "auth",
+        "user"
+      ],
+      [
+        "delete_user",
+        "auth",
+        "user"
+      ],
+      [
+        "view_user",
+        "auth",
+        "user"
+      ],
+      [
+        "add_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "change_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "delete_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "view_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "add_category",
+        "blogs",
+        "category"
+      ],
+      [
+        "change_category",
+        "blogs",
+        "category"
+      ],
+      [
+        "delete_category",
+        "blogs",
+        "category"
+      ],
+      [
+        "view_category",
+        "blogs",
+        "category"
+      ],
+      [
+        "change_comment",
+        "blogs",
+        "comment"
+      ],
+      [
+        "delete_comment",
+        "blogs",
+        "comment"
+      ],
+      [
+        "view_comment",
+        "blogs",
+        "comment"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Editor",
+    "permissions": [
+      [
+        "add_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "change_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "delete_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "view_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "view_category",
+        "blogs",
+        "category"
+      ],
+      [
+        "change_comment",
+        "blogs",
+        "comment"
+      ],
+      [
+        "delete_comment",
+        "blogs",
+        "comment"
+      ],
+      [
+        "view_comment",
+        "blogs",
+        "comment"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Admin",
+    "permissions": [
+      [
+        "add_group",
+        "auth",
+        "group"
+      ],
+      [
+        "change_group",
+        "auth",
+        "group"
+      ],
+      [
+        "delete_group",
+        "auth",
+        "group"
+      ],
+      [
+        "view_group",
+        "auth",
+        "group"
+      ],
+      [
+        "add_user",
+        "auth",
+        "user"
+      ],
+      [
+        "change_user",
+        "auth",
+        "user"
+      ],
+      [
+        "delete_user",
+        "auth",
+        "user"
+      ],
+      [
+        "view_user",
+        "auth",
+        "user"
+      ],
+      [
+        "add_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "change_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "delete_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "view_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "add_category",
+        "blogs",
+        "category"
+      ],
+      [
+        "change_category",
+        "blogs",
+        "category"
+      ],
+      [
+        "delete_category",
+        "blogs",
+        "category"
+      ],
+      [
+        "view_category",
+        "blogs",
+        "category"
+      ],
+      [
+        "add_comment",
+        "blogs",
+        "comment"
+      ],
+      [
+        "change_comment",
+        "blogs",
+        "comment"
+      ],
+      [
+        "delete_comment",
+        "blogs",
+        "comment"
+      ],
+      [
+        "view_comment",
+        "blogs",
+        "comment"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Author",
+    "permissions": [
+      [
+        "add_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "change_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "delete_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "view_blog",
+        "blogs",
+        "blog"
+      ],
+      [
+        "view_category",
+        "blogs",
+        "category"
+      ],
+      [
+        "add_comment",
+        "blogs",
+        "comment"
+      ],
+      [
+        "delete_comment",
+        "blogs",
+        "comment"
+      ],
+      [
+        "view_comment",
+        "blogs",
+        "comment"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$Cx5JwWicPwWetOHiVtSZjx$KY2pyNOY2Uzp/o+vlQsDGWeSDjfi7MyAb+w605qORk8=",
+    "last_login": "2026-05-01T10:28:20.913Z",
+    "is_superuser": true,
+    "username": "djangoadmin",
+    "first_name": "Django",
+    "last_name": "Admin",
+    "email": "developer.rathan@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-03-22T09:54:22Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$390000$dVF9b1QsmJK5M7xGH672If$cfPiWoJtaFWPPFhT9IXQHIOdalGWWnr6jmpc48uNcJ4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "rathan123",
+    "first_name": "R",
+    "last_name": "K",
+    "email": "rathan123@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-04-04T13:01:23Z",
+    "groups": [
+      [
+        "Author"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$5rveLqVWrnYp13OFVsABnB$x/g/tPeBMzsiSKlwo5Zi+dwhzat6DTRDWThCo9JaY30=",
+    "last_login": "2025-11-26T08:40:49.700Z",
+    "is_superuser": false,
+    "username": "editor1",
+    "first_name": "Rathan",
+    "last_name": "Kumar",
+    "email": "editor1@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-04-06T10:18:57Z",
+    "groups": [
+      [
+        "Editor"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$YKSFXrLFTHRQRwtmVTpbzS$geSRrhJG+rs/Mt2mro6hD4J89OXMCRCsyUupBVnvHPc=",
+    "last_login": "2025-11-26T08:38:49.201Z",
+    "is_superuser": false,
+    "username": "manager1",
+    "first_name": "Manager1",
+    "last_name": "M",
+    "email": "manager1@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-04-06T10:31:30Z",
+    "groups": [
+      [
+        "Manager"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$dI1uzi19QdTsQWPtbJNYwp$6EDgx0gBIgo409Sd06J+qmnaLP4w27L1ubVibXszHHw=",
+    "last_login": "2026-04-29T19:29:03.205Z",
+    "is_superuser": false,
+    "username": "Mridul",
+    "first_name": "",
+    "last_name": "",
+    "email": "mriduljindal3830@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T19:27:27.398Z",
+    "groups": [
+      [
+        "Author"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$bqAwpIBo3BhQjiZZohlyCW$irAvYNvFqWHLlCdDC07BFHjsi3e+aEjtegxQF2jJKag=",
+    "last_login": "2026-04-30T12:49:33.721Z",
+    "is_superuser": false,
+    "username": "hi",
+    "first_name": "",
+    "last_name": "",
+    "email": "mriduljindal418@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-30T12:48:50.337Z",
+    "groups": [
+      [
+        "Author"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$JszDQSOTiUqHD6IYcRtyf6$xZsYrnK0cpQEH+miAHq1eQ1K98LjahBJXuOWv6MOxMU=",
+    "last_login": "2026-05-01T10:45:42.294Z",
+    "is_superuser": false,
+    "username": "Hello",
+    "first_name": "",
+    "last_name": "",
+    "email": "mriduljindal3830@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-30T18:59:03.922Z",
+    "groups": [
+      [
+        "Author"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "0rkjn7ljwoqnzuxzu7va6scqow738s3s",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBkBiwu3XuGZgYGqRpISrsy3l2bdKHb_977LzXSupRx7TKPU1Jn5dThd2OKD6kbSHeqt6Zjq8s8sd4UvdOury3J87K7fweFevnW1mTvwHoE9MQsyTFHPrGDzIPPAY45U5boGdGIWGsQ7IDBByRwIar3B_ODOAU:1qA4bD:nNPnKxaUzmtQJnzeh4pbD0UMw7w69JL6jdM7tHOP3iE",
+    "expire_date": "2023-06-30T08:14:27.994Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3yrwnrqxbszn2gl9wdhe8ss3leyyzhf9",
+  "fields": {
+    "session_data": "eyJ2aWV3ZWRfYmxvZ3MiOlsxXX0:1wILVI:kw-YnRxtFXMFRlgdapubtBwTEodd9J9KnnfrUsm3ZRc",
+    "expire_date": "2026-05-14T07:08:08.916Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "4yyjsy7mda9dbt5nqzh7xcyvsoo8kp3g",
+  "fields": {
+    "session_data": "eyJ2aWV3ZWRfYmxvZ3MiOlszXX0:1wILcj:6zipvUbbfuR8px7lqE_RhpiCG9-9Q9wS8oIgnIFgSyc",
+    "expire_date": "2026-05-14T07:15:49.120Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5v11z1q6xas4mobzcnb54j5y7z0py5ip",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBkBiwu3XuGZgYGqRpISrsy3l2bdKHb_977LzXSupRx7TKPU1Jn5dThd2OKD6kbSHeqt6Zjq8s8sd4UvdOury3J87K7fweFevnW1mTvwHoE9MQsyTFHPrGDzIPPAY45U5boGdGIWGsQ7IDBByRwIar3B_ODOAU:1pnKBk:Z7PaRrNfyit92JALnQXHI3gJsJVPX2EfuDWOizrd2FA",
+    "expire_date": "2023-04-28T14:14:08.678Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "60z4jbbppquazk4vfowxvl8ga6lrj9wf",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlk4zm4wJT1niPYXHECxFCcV4u4QKQW0b2bey_W0Lrlfq839qO7sgjv8bkzysGkDeqfpVryUaZlH9pvid1r9tag9L7v7d5Cp5m8dj4DKhifAELskHWtCNSLjBjBKG41MZcChhRQkMhCmkFqARNJ05N4f78Y4QQ:1pnIQR:zJgYGaLujvdt_g1BpW17YWA27xZVga8nWLdDbaVqON4",
+    "expire_date": "2023-04-28T12:21:11.970Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9tl0q0skazz7epktehtasiu1fjdxow9t",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hCgAxSX7j0DGWZAqoYmpV0Z765NutDtf-_9l4i4rTVuPS9xYnEWIE6_W0J65LYDvmO7zZLmti5TkrsiD9rldeb8vBzu30HFXr81qcBDccDOB06mAOYxgMVkgIhA86CoQCKHOdswah-80kU5wyURWRDvD_9sOJg:1pqvUc:wB7ObHCRwQgMJXUbdkpkHChX0laEc01fPyYWd9faKys",
+    "expire_date": "2023-05-08T12:40:30.293Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "b6qpi873pnszk28s4f0wzw6mp8oc7qfi",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlk4zm4wJT1niPYXHECxFCcV4u4QKQW0b2bey_W0Lrlfq839qO7sgjv8bkzysGkDeqfpVryUaZlH9pvid1r9tag9L7v7d5Cp5m8dj4DKhifAELskHWtCNSLjBjBKG41MZcChhRQkMhCmkFqARNJ05N4f78Y4QQ:1pkseF:8GDOWf-pbvuSCZ0X3vodkJI9TvxmGQTeeMxWMzY7fuI",
+    "expire_date": "2023-04-21T20:25:27.260Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "bglxi9dxgj4g41i3o1cf58v84s1dqv0m",
+  "fields": {
+    "session_data": "eyJ2aWV3ZWRfYmxvZ3MiOlsxXX0:1wILVn:luNTkXoKh-kTd8nBDynA2xxPFo95MJWZJiZShCs4irc",
+    "expire_date": "2026-05-14T07:08:39.810Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "bo459lg6qxtkop4iqoq8l2qa27oe38xr",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlk4zm4wJT1niPYXHECxFCcV4u4QKQW0b2bey_W0Lrlfq839qO7sgjv8bkzysGkDeqfpVryUaZlH9pvid1r9tag9L7v7d5Cp5m8dj4DKhifAELskHWtCNSLjBjBKG41MZcChhRQkMhCmkFqARNJ05N4f78Y4QQ:1pmY0t:Nwa-pfAKMSUETY2HHvZNvGZrXSB-r3WI4nKertetJz8",
+    "expire_date": "2023-04-26T10:47:43.700Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "eniz1gdvpqk45s0qtqk76h91qch3mawy",
+  "fields": {
+    "session_data": "eyJ2aWV3ZWRfYmxvZ3MiOlsxXX0:1wILVe:BZjVDbpDNrzNU5Q6VxaOr0Gacs-d5mS5G4ua9Bo5MMo",
+    "expire_date": "2026-05-14T07:08:30.639Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "h5tv6b92pawak4lhsehx9rdztj2cgz2p",
+  "fields": {
+    "session_data": "eyJ2aWV3ZWRfYmxvZ3MiOlsxXX0:1wILUp:VYoJqyZVPybWt0pMFREr2vaSBxcia9xoRnBjLwZhT5k",
+    "expire_date": "2026-05-14T07:07:39.945Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "iz2u7jb3l7hw969sjfjyfhs45v996b7v",
+  "fields": {
+    "session_data": ".eJxVjMsOgjAQRf-la9NAW_pw6d5vIHemg0UNJBRWxn9XEha6veec-1I9trX0W5WlH7M6q7ZRp9-RwA-ZdpLvmG6z5nlal5H0ruiDVn2dszwvh_t3UFDLt3YAOh8pdClKSgQTvTMmETNbWGrN0MGKZTEhIDWZ88COPBDFeTj1_gAXoDjv:1wIlNO:3Piw2ILMKA4hH9dqFhZo1qQIknrepCm_nBaa3LhQJG4",
+    "expire_date": "2026-05-15T10:45:42.314Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "k8jivai48tvthze6b4a3lhq3bg2prpf7",
+  "fields": {
+    "session_data": "eyJ2aWV3ZWRfYmxvZ3MiOlsxXX0:1wIkxT:n4N0yd6dp-xY8PkCscXjZMOvNAw_mlojWe3rIDi25dA",
+    "expire_date": "2026-05-15T10:18:55.547Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ksr9fqzi6jlpa2e9xf95fj3v8rt3xoes",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlk4zm4wJT1niPYXHECxFCcV4u4QKQW0b2bey_W0Lrlfq839qO7sgjv8bkzysGkDeqfpVryUaZlH9pvid1r9tag9L7v7d5Cp5m8dj4DKhifAELskHWtCNSLjBjBKG41MZcChhRQkMhCmkFqARNJ05N4f78Y4QQ:1vOB6Z:R-nvVYo655nzCA9y6280iY87HNfPeRXG1eRI8r58swE",
+    "expire_date": "2025-12-10T08:42:27.596Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kyumunv82ty178awzon7cuiwsj9q2moq",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlk4zm4wJT1niPYXHECxFCcV4u4QKQW0b2bey_W0Lrlfq839qO7sgjv8bkzysGkDeqfpVryUaZlH9pvid1r9tag9L7v7d5Cp5m8dj4DKhifAELskHWtCNSLjBjBKG41MZcChhRQkMhCmkFqARNJ05N4f78Y4QQ:1vMM1T:GT_vdo9yHOoUyrAYm1qnMAacIlwiDflzk4_WmaaCqZU",
+    "expire_date": "2025-12-05T07:57:39.183Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "lf0hq9hrld5s9hd9evg81fical0khvir",
+  "fields": {
+    "session_data": ".eJxVjLsOgkAUBf9la7OBC-zD0t5vIPcpqIGEhcr470pCoe2ZmfNyPW7r0G9Fl34Ud3bRnX43Qn7otAO543SbPc_Tuozkd8UftPjrLPq8HO7fwYBl-NYG3ECMKYdITSXQUOo4WwIykaDAlMSS1BFT22KnxISVmuXAYDWge38A9605Aw:1wI9y9:4jkMph7r9Ahu0-T_0okqjxZPOA3x_ywUs7Mpi0VNajA",
+    "expire_date": "2026-05-13T18:49:09.401Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "n0x3sljjd57lojxlqj4dhu1sa48tnhm3",
+  "fields": {
+    "session_data": "eyJ2aWV3ZWRfYmxvZ3MiOlszXX0:1wIR5t:3PuOOzo1I1TZHhbC_WF7KCr9bkfR5uTCBRIbERjyD1w",
+    "expire_date": "2026-05-14T13:06:17.112Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "qo2j8bm6y0sjyadknj5650r7nyysvgzn",
+  "fields": {
+    "session_data": ".eJytkMtuwjAQRf_F6yjNw4-EZYEdLSAhKEUoGtsDMYkSiB1ohfj3Goku2LOdc-8c6V6JbZWBGpRq-8YV1oFDSwZXIuaL9DReHuau_0qi45AMNldy7FqF1nNSt3vTkIBocEAGTV_XATlWCgvVaizO2Jmdwe6fNPjjfOmN3IJYCMFYmtIkpIxTzuk2IHbaTxcj6Bbl52r9PT69WsayME-8LmFeZqqLWsvlZHieTWa_o9WrZTwLE0ZTHvPtLSAF9K4seotdYbRP5uTpJkFV2NyBPkCzb0PVNq4zMrxHwge14Yd31--P7NODEmzp2wJomsmcc51rLaWKNMtZJqgEybXKuYQ4isEPIHFHKQhEjEVGI4hoJOJM-qdngxfUhfQD-B026fb2B8murzM:1wIR5T:3EPrJyUQEOpJUAGc0kSaxrDafv8nN-B2TiCI_6Ju1gU",
+    "expire_date": "2026-05-14T13:05:51.048Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ur1kcaqnn766te7avr1khtdurf2oxp3e",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSE8Zlpw6d5vIAwDUjU0Ke3K-O_apAvd3nPOfYkQt7WGreclTCzOQovT70YxPXLbAd9ju80yzW1dJpK7Ig_a5XXm_Lwc7t9Bjb1-66xJOTc4Qhg0IBowzgJlrw1QcT5ZaxBZj5B8UWxGYouFXSzgWZUk3h-yJzdP:1wIBLz:WHDX5gZEhtIYJwCUObzbm4vd43RibAIVxMKaP1khSQw",
+    "expire_date": "2026-05-13T20:17:51.464Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ya9i3q86te7ihml6z11ljop7z9l7ob6t",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBkBiwu3XuGZgYGqRpISrsy3l2bdKHb_977LzXSupRx7TKPU1Jn5dThd2OKD6kbSHeqt6Zjq8s8sd4UvdOury3J87K7fweFevnW1mTvwHoE9MQsyTFHPrGDzIPPAY45U5boGdGIWGsQ7IDBByRwIar3B_ODOAU:1pxUcH:N9eKBmLclO6lQhog0WmuHbf4uCHKIHz8tgjvlfSOMvM",
+    "expire_date": "2023-05-26T15:23:33.846Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yebzv4i7utd73kj52mi93tvnxvsrjq7r",
+  "fields": {
+    "session_data": ".eJw1jUEOgjAQRe8y61YwUEg4hRs3GtKUMmJj7ZB2QBPC3a0mrt_772-wOnzhqAdPU4LuWvUCEllnvLGWlsA6sWHMaAMV4nnhiS8rnY40lFnfYI5kMWUOueACCBgNG-jC4r2A-WFRWxpRrxjdzWH8k4BvzqPid1zwHWVE4yW7J0rj5Dcio7EoXZIUCtjFsW1bpWpVlYe6bqqmVf2-fwD99kG9:1wIR8M:H6OcIns0ajZ83duJqsudxEdGr6eG2Ewu0oInOnMhsc4",
+    "expire_date": "2026-05-14T13:08:50.446Z"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "mriduldev.xyz",
+    "name": "BlogSphere"
+  }
+},
+{
+  "model": "blogs.category",
+  "pk": 1,
+  "fields": {
+    "category_name": "Sports",
+    "slug": "sports",
+    "created_at": "2023-03-23T10:03:16.485Z",
+    "updated_at": "2023-03-23T10:03:16.485Z"
+  }
+},
+{
+  "model": "blogs.category",
+  "pk": 2,
+  "fields": {
+    "category_name": "Politics",
+    "slug": "politics",
+    "created_at": "2023-03-23T10:03:34.477Z",
+    "updated_at": "2025-11-21T07:56:20.805Z"
+  }
+},
+{
+  "model": "blogs.category",
+  "pk": 3,
+  "fields": {
+    "category_name": "Technology",
+    "slug": "technology",
+    "created_at": "2023-03-24T11:55:46.878Z",
+    "updated_at": "2023-03-24T11:55:46.878Z"
+  }
+},
+{
+  "model": "blogs.category",
+  "pk": 4,
+  "fields": {
+    "category_name": "Business",
+    "slug": "business",
+    "created_at": "2023-03-24T11:55:54.249Z",
+    "updated_at": "2025-11-21T07:56:23.467Z"
+  }
+},
+{
+  "model": "blogs.category",
+  "pk": 5,
+  "fields": {
+    "category_name": "Health",
+    "slug": "health",
+    "created_at": "2023-03-24T12:04:14.685Z",
+    "updated_at": "2023-03-24T12:04:14.685Z"
+  }
+},
+{
+  "model": "blogs.category",
+  "pk": 6,
+  "fields": {
+    "category_name": "Science",
+    "slug": "science",
+    "created_at": "2023-03-24T12:04:19.160Z",
+    "updated_at": "2023-04-08T12:12:21.223Z"
+  }
+},
+{
+  "model": "blogs.tag",
+  "pk": 1,
+  "fields": {
+    "name": "python",
+    "slug": "python",
+    "created_at": "2026-04-29T20:17:01.632Z"
+  }
+},
+{
+  "model": "blogs.tag",
+  "pk": 2,
+  "fields": {
+    "name": "django",
+    "slug": "django",
+    "created_at": "2026-04-29T20:17:01.682Z"
+  }
+},
+{
+  "model": "blogs.tag",
+  "pk": 3,
+  "fields": {
+    "name": "tutorial",
+    "slug": "tutorial",
+    "created_at": "2026-04-29T20:17:01.717Z"
+  }
+},
+{
+  "model": "blogs.blog",
+  "pk": 1,
+  "fields": {
+    "title": "Socially responsible investing, marketed under the moniker",
+    "slug": "socially-responsible-investing-marketed-under-the-moniker",
+    "category": 2,
+    "author": [
+      "djangoadmin"
+    ],
+    "featured_image": "uploads/2023/03/24/cricket.jpg",
+    "short_description": "Sustainable bonds are a big slice of this pie. Globally, over the last two years, an average of more than 400 bonds have been issued per quarter, totaling over $1.7 trillion, according to the London St",
+    "blog_body": "Socially responsible investing, marketed under the moniker “ESG” (short for environmental, social and governance), is a huge and growing business. In 2015 global ESG-related assets were $2.2 trillion, according to PwC, growing to $9.4 trillion in 2020 and nearly doubling in 2021 to $18.4 trillion. Sustainable bonds are a big slice of this pie. Globally, over the last two years, an average of more than 400 bonds have been issued per quarter, totaling over $1.7 trillion, according to the London Stock Exchange’s Refinitiv group. European issuance is more than double that of the U.S., but a wave of new green bonds is coming here.",
+    "status": "Published",
+    "is_featured": true,
+    "feature_requested": false,
+    "views": 5,
+    "created_at": "2023-03-23T10:56:05.708Z",
+    "updated_at": "2023-03-25T07:11:43.297Z",
+    "tags": [
+      2,
+      1,
+      3
+    ],
+    "likes": []
+  }
+},
+{
+  "model": "blogs.blog",
+  "pk": 2,
+  "fields": {
+    "title": "Canada’s population sees record growth as immigration rises",
+    "slug": "canadas-population-sees-record-growth-as-immigration-rises",
+    "category": 2,
+    "author": [
+      "djangoadmin"
+    ],
+    "featured_image": "uploads/2023/03/23/football.jpg",
+    "short_description": "In 2015 global ESG-related assets were $2.2 trillion, according to PwC, growing to $9.4 trillion in 2020 and nearly doubling in 2021 to $18.4 trillion.",
+    "blog_body": "Socially responsible investing, marketed under the moniker “ESG” (short for environmental, social and governance), is a huge and growing business. In 2015 global ESG-related assets were $2.2 trillion, according to PwC, growing to $9.4 trillion in 2020 and nearly doubling in 2021 to $18.4 trillion. Sustainable bonds are a big slice of this pie. Globally, over the last two years, an average of more than 400 bonds have been issued per quarter, totaling over $1.7 trillion, according to the London Stock Exchange’s Refinitiv group. European issuance is more than double that of the U.S., but a wave of new green bonds is coming here.",
+    "status": "Published",
+    "is_featured": false,
+    "feature_requested": false,
+    "views": 0,
+    "created_at": "2023-03-23T11:15:11.578Z",
+    "updated_at": "2023-03-24T13:50:45.047Z",
+    "tags": [],
+    "likes": []
+  }
+},
+{
+  "model": "blogs.blog",
+  "pk": 3,
+  "fields": {
+    "title": "The Real-Time AI Data Race Is On",
+    "slug": "the-real-time-ai-data-race-is-on",
+    "category": 4,
+    "author": [
+      "djangoadmin"
+    ],
+    "featured_image": "uploads/2023/03/24/ai-race.jpg",
+    "short_description": "Machines are smart. As we now apply an increasing amount of Artificial Intelligence (AI) to our machines through increasingly sophisticated Machines Learning (ML) models, our machines are getting smarter all the time.",
+    "blog_body": "The question we must now ask is: should AI specialists develop more real-time competencies, should real-time data streaming specialists work to innovate new tiers of AI, or should the responsibility fall to higher-level data platform specialists or the hyperscaler Cloud Services Providers (CSPs) themselves?\r\n\r\nDataStax thinks this challenge is a data platform play, but then - it would, the company is an enterprise DataBase-as-a-Service (DBaaS) tools and technology specialist with a foundation in the Apache Cassandra open source database. Significantly, the company is now referring to itself as a real-time AI business, not least because it has this month entered into a definitive agreement to acquire Kaskada a machine learning company with dedicated competencies in ​managing​, storing​ and accessing​ ​time-based data​ to train​ ML ​​models.",
+    "status": "Published",
+    "is_featured": true,
+    "feature_requested": false,
+    "views": 5,
+    "created_at": "2023-03-24T11:56:39.843Z",
+    "updated_at": "2023-03-24T14:51:34.543Z",
+    "tags": [],
+    "likes": [
+      [
+        "hi"
+      ]
+    ]
+  }
+},
+{
+  "model": "blogs.blog",
+  "pk": 4,
+  "fields": {
+    "title": "How Wall Street Banks Will Reap Billions From Tax-Free Renewable Energy Bonds",
+    "slug": "how-wall-street-banks-will-reap-billions-from-tax-free-renewable-energy-bonds-4",
+    "category": 4,
+    "author": [
+      "djangoadmin"
+    ],
+    "featured_image": "uploads/2023/03/24/wall-street.png",
+    "short_description": "One of the hottest trends in finance is prepaid muni bonds structured to help local utilities buy decades worth of renewable electricity. They’re good for the environment, but even better for the banks that will profit from cheap financing, trading profits and federal tax breaks.\r\nSocially responsible investing, marketed under the moniker “ESG” (short for environmental, social and governance), is a huge and growing business. In 2015 global ESG-related assets were $2.2 trillion, according to PwC,",
+    "blog_body": "Socially responsible investing, marketed under the moniker “ESG” (short for environmental, social and governance), is a huge and growing business. In 2015 global ESG-related assets were $2.2 trillion, according to PwC, growing to $9.4 trillion in 2020 and nearly doubling in 2021 to $18.4 trillion. Sustainable bonds are a big slice of this pie. Globally, over the last two years, an average of more than 400 bonds have been issued per quarter, totaling over $1.7 trillion, according to the London Stock Exchange’s Refinitiv group. European issuance is more than double that of the U.S., but a wave of new green bonds is coming here.\r\n\r\nOne particularly vibrant corner of this market: ESG-certified municipal bonds, such as those designed to help local communities prepay for decades’ worth of green electricity. According to Monica Reid, the founder of Kestrel, which charges “a fraction of a basis point” of a new bond deal’s face value to verify new issues as “social,” “green” or “sustainable,” there have been $85 billion worth of these municipal bonds issued in the U.S. in the last two years. Reid’s Hood River, Oregon–based team of 27 analysts and engineers certified nearly a third of them.",
+    "status": "Published",
+    "is_featured": true,
+    "feature_requested": false,
+    "views": 0,
+    "created_at": "2023-03-24T12:00:00.693Z",
+    "updated_at": "2023-05-12T15:23:50.329Z",
+    "tags": [],
+    "likes": []
+  }
+},
+{
+  "model": "blogs.blog",
+  "pk": 5,
+  "fields": {
+    "title": "2023 Predictions For The Sports And Health Technology Industry",
+    "slug": "2023-predictions-for-the-sports-and-health-technology-industry-5",
+    "category": 3,
+    "author": [
+      "djangoadmin"
+    ],
+    "featured_image": "uploads/2023/03/24/tech.jpg",
+    "short_description": "Entrepreneur & investor with a passion for early-stage startups. CEO of leAD—a leading sports & health tech investment ecosystem.",
+    "blog_body": "Despite continued macroeconomic uncertainties, the venture capital market has shown strong early signals in 2023, and I have increasing confidence in the outlook for the months ahead. As CEO of a leading sports and health tech investment company, I continue to track how trends in these industries can create new opportunities for organizations and those looking to enter the market.\r\n\r\nIn the sports technology space, I anticipate that fandom and the fan experience will take center stage and that 2023 will be the year that separates the pack—who will champion the next era of fan engagement in the digital age of Web3? But, I also anticipate way more novelty and disruption in the health tech space, where there is increasing attention on women's health and testing and monitoring technology coming out of the labs and into the hands of the consumer to usher in a new era of patient engagement and remote care.",
+    "status": "Published",
+    "is_featured": false,
+    "feature_requested": false,
+    "views": 0,
+    "created_at": "2023-03-24T12:01:34.671Z",
+    "updated_at": "2023-04-14T11:52:48.504Z",
+    "tags": [],
+    "likes": [
+      [
+        "djangoadmin"
+      ]
+    ]
+  }
+},
+{
+  "model": "blogs.blog",
+  "pk": 10,
+  "fields": {
+    "title": "this is a new post updated",
+    "slug": "this-is-a-new-post-updated-10",
+    "category": 3,
+    "author": [
+      "editor1"
+    ],
+    "featured_image": "uploads/2023/04/12/refinery2-1024x683_zhrluPn.jpg",
+    "short_description": "fsgfsg",
+    "blog_body": "sgdfg",
+    "status": "Draft",
+    "is_featured": false,
+    "feature_requested": false,
+    "views": 0,
+    "created_at": "2023-04-12T11:28:19.038Z",
+    "updated_at": "2023-04-12T11:47:41.242Z",
+    "tags": [],
+    "likes": []
+  }
+},
+{
+  "model": "blogs.blog",
+  "pk": 11,
+  "fields": {
+    "title": "AI World",
+    "slug": "ai-world-11",
+    "category": 3,
+    "author": [
+      "Hello"
+    ],
+    "featured_image": "uploads/2026/04/30/download.jpg",
+    "short_description": "Artificial Intelligence (AI) is the simulation of human intelligence in machines, enabling them to learn, reason, and make decisions. It powers modern technologies like chatbots, recommendation systems, self-driving cars, and data analytics, transforming how we live and work.",
+    "blog_body": "<h3>🧠 Introduction to Artificial Intelligence</h3>\r\n\r\n<p>Artificial Intelligence (AI) is one of the most transformative technologies of the 21st century. It refers to the ability of machines to mimic human intelligence, perform tasks, and improve over time through learning and experience. From virtual assistants to advanced robotics, AI is shaping industries and redefining the future.</p>\r\n\r\n<h3>⚙️ How AI Works</h3>\r\n\r\n<p>AI works by combining large amounts of data with algorithms that allow machines to learn patterns and make decisions. The key components include:</p>\r\n\r\n<ul>\r\n\t<li><strong>Machine Learning (ML):</strong> Enables systems to learn from data without being explicitly programmed</li>\r\n\t<li><strong>Deep Learning:</strong> Uses neural networks to simulate human brain functions</li>\r\n\t<li><strong>Natural Language Processing (NLP):</strong> Helps machines understand and respond to human language</li>\r\n\t<li><strong>Computer Vision:</strong> Allows machines to interpret visual data like images and videos</li>\r\n</ul>\r\n\r\n<h3>🚀 Applications of AI</h3>\r\n\r\n<p>AI is already a part of our daily lives, often without us realizing it:</p>\r\n\r\n<ul>\r\n\t<li><strong>Healthcare:</strong> Disease prediction, medical imaging, and personalized treatment</li>\r\n\t<li><strong>Finance:</strong> Fraud detection, automated trading, and risk analysis</li>\r\n\t<li><strong>E-commerce:</strong> Product recommendations and customer behavior analysis</li>\r\n\t<li><strong>Transportation:</strong> Self-driving cars and traffic optimization</li>\r\n\t<li><strong>Education:</strong> Personalized learning and smart tutoring systems</li>\r\n</ul>\r\n\r\n<h3>🌍 Benefits of AI</h3>\r\n\r\n<p>AI offers numerous advantages:</p>\r\n\r\n<ul>\r\n\t<li>Improves efficiency and productivity</li>\r\n\t<li>Reduces human error</li>\r\n\t<li>Automates repetitive tasks</li>\r\n\t<li>Provides data-driven insights</li>\r\n\t<li>Enhances user experience</li>\r\n</ul>\r\n\r\n<h3>⚠️ Challenges and Concerns</h3>\r\n\r\n<p>Despite its benefits, AI also raises important concerns:</p>\r\n\r\n<ul>\r\n\t<li>Job displacement due to automation</li>\r\n\t<li>Data privacy and security issues</li>\r\n\t<li>Bias in AI algorithms</li>\r\n\t<li>Ethical concerns in decision-making</li>\r\n</ul>\r\n\r\n<h3>🔮 Future of AI</h3>\r\n\r\n<p>The future of AI is incredibly promising. With advancements in technology, AI is expected to become more powerful and integrated into everyday life. From smart cities to advanced healthcare systems, AI will continue to drive innovation and improve global living standards.</p>\r\n\r\n<h3>✍️ Conclusion</h3>\r\n\r\n<p>Artificial Intelligence is no longer just a concept of science fiction&mdash;it is a reality that is rapidly evolving. As AI continues to grow, it is important to balance innovation with ethical responsibility. Embracing AI wisely can unlock endless possibilities and create a smarter, more efficient world.</p>",
+    "status": "Published",
+    "is_featured": true,
+    "feature_requested": false,
+    "views": 1,
+    "created_at": "2026-04-30T19:03:56.571Z",
+    "updated_at": "2026-05-01T10:34:51.456Z",
+    "tags": [],
+    "likes": [
+      [
+        "Hello"
+      ]
+    ]
+  }
+},
+{
+  "model": "blogs.comment",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "rathan123"
+    ],
+    "blog": 2,
+    "parent": null,
+    "comment": "This is a test comment",
+    "created_at": "2023-04-24T11:51:43.815Z",
+    "updated_at": "2023-04-24T11:51:43.815Z"
+  }
+},
+{
+  "model": "blogs.comment",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "djangoadmin"
+    ],
+    "blog": 2,
+    "parent": null,
+    "comment": "test comment 2",
+    "created_at": "2023-04-24T12:27:39.638Z",
+    "updated_at": "2023-04-24T12:27:39.638Z"
+  }
+},
+{
+  "model": "blogs.comment",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "djangoadmin"
+    ],
+    "blog": 2,
+    "parent": null,
+    "comment": "test comment 3",
+    "created_at": "2023-04-24T12:29:20.833Z",
+    "updated_at": "2023-04-24T12:29:20.833Z"
+  }
+},
+{
+  "model": "blogs.comment",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "djangoadmin"
+    ],
+    "blog": 4,
+    "parent": null,
+    "comment": "This is the comment 1",
+    "created_at": "2023-04-24T12:30:45.031Z",
+    "updated_at": "2023-04-24T12:30:45.031Z"
+  }
+},
+{
+  "model": "blogs.comment",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "editor1"
+    ],
+    "blog": 1,
+    "parent": null,
+    "comment": "this is another comment",
+    "created_at": "2023-04-24T12:40:53.695Z",
+    "updated_at": "2023-04-24T12:40:53.695Z"
+  }
+},
+{
+  "model": "blogs.comment",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "djangoadmin"
+    ],
+    "blog": 5,
+    "parent": null,
+    "comment": "xdfvbdds",
+    "created_at": "2026-05-01T10:29:32.377Z",
+    "updated_at": "2026-05-01T10:29:32.377Z"
+  }
+},
+{
+  "model": "blogs.newslettersubscriber",
+  "pk": 1,
+  "fields": {
+    "email": "replit.ffc88e@nicoric.com",
+    "is_active": true,
+    "created_at": "2026-04-30T18:58:02.129Z"
+  }
+},
+{
+  "model": "blogs.newslettersubscriber",
+  "pk": 2,
+  "fields": {
+    "email": "mriduljindal175@gmail.com",
+    "is_active": true,
+    "created_at": "2026-05-01T10:15:17.501Z"
+  }
+},
+{
+  "model": "blogs.profile",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "djangoadmin"
+    ],
+    "bio": "",
+    "avatar": "",
+    "website": "",
+    "created_at": "2026-04-29T20:14:52.364Z",
+    "updated_at": "2026-04-29T20:14:52.364Z"
+  }
+},
+{
+  "model": "blogs.profile",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "rathan123"
+    ],
+    "bio": "",
+    "avatar": "",
+    "website": "",
+    "created_at": "2026-04-29T20:14:52.411Z",
+    "updated_at": "2026-04-29T20:14:52.411Z"
+  }
+},
+{
+  "model": "blogs.profile",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "editor1"
+    ],
+    "bio": "",
+    "avatar": "",
+    "website": "",
+    "created_at": "2026-04-29T20:14:52.425Z",
+    "updated_at": "2026-04-29T20:14:52.425Z"
+  }
+},
+{
+  "model": "blogs.profile",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "manager1"
+    ],
+    "bio": "",
+    "avatar": "",
+    "website": "",
+    "created_at": "2026-04-29T20:14:52.441Z",
+    "updated_at": "2026-04-29T20:14:52.441Z"
+  }
+},
+{
+  "model": "blogs.profile",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "Mridul"
+    ],
+    "bio": "",
+    "avatar": "",
+    "website": "",
+    "created_at": "2026-04-29T20:14:52.458Z",
+    "updated_at": "2026-04-29T20:14:52.458Z"
+  }
+},
+{
+  "model": "blogs.profile",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "hi"
+    ],
+    "bio": "",
+    "avatar": "",
+    "website": "",
+    "created_at": "2026-04-30T12:48:50.613Z",
+    "updated_at": "2026-04-30T12:48:50.613Z"
+  }
+},
+{
+  "model": "blogs.profile",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "Hello"
+    ],
+    "bio": "",
+    "avatar": "",
+    "website": "",
+    "created_at": "2026-04-30T18:59:04.224Z",
+    "updated_at": "2026-04-30T18:59:04.224Z"
+  }
+},
+{
+  "model": "assignments.about",
+  "pk": 3,
+  "fields": {
+    "about_heading": "About BlogSphere",
+    "about_description": "BlogSphere is a community-driven publication covering sports, politics, technology, business, health, and science. We share clear, well-researched stories from independent writers — built to keep curious readers informed every day.",
+    "created_at": "2023-03-28T09:27:14.981Z",
+    "updated_at": "2026-04-30T07:58:30.077Z"
+  }
+},
+{
+  "model": "assignments.sociallink",
+  "pk": 1,
+  "fields": {
+    "platform": "GitHub",
+    "link": "https://github.com/NOVAMJ",
+    "created_at": "2023-03-28T09:34:05.104Z",
+    "updated_at": "2026-04-30T19:09:18.844Z"
+  }
+},
+{
+  "model": "assignments.sociallink",
+  "pk": 2,
+  "fields": {
+    "platform": "LinkedIn",
+    "link": "https://www.linkedin.com/in/mridul-jindal-07nov/",
+    "created_at": "2023-03-28T09:34:56.101Z",
+    "updated_at": "2026-04-30T19:09:18.859Z"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2023-03-23T10:03:16.489Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "category"
+    ],
+    "object_id": "1",
+    "object_repr": "Category object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2023-03-23T10:03:34.488Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "category"
+    ],
+    "object_id": "2",
+    "object_repr": "Category object (2)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2023-03-23T10:56:05.714Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "1",
+    "object_repr": "Test blog",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2023-03-23T11:15:11.583Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "2",
+    "object_repr": "Canada’s population sees record growth as immigration rises",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2023-03-23T11:18:08.558Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "2",
+    "object_repr": "Canada’s population sees record growth as immigration rises",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is featured\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2023-03-23T11:28:02.523Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "2",
+    "object_repr": "Canada’s population sees record growth as immigration rises",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2023-03-23T11:28:07.292Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "1",
+    "object_repr": "Test blog",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2023-03-23T11:30:12.860Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "1",
+    "object_repr": "Test blog",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is featured\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2023-03-23T11:30:18.273Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "2",
+    "object_repr": "Canada’s population sees record growth as immigration rises",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is featured\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2023-03-24T11:55:46.878Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "category"
+    ],
+    "object_id": "3",
+    "object_repr": "Technology",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2023-03-24T11:55:54.249Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "category"
+    ],
+    "object_id": "4",
+    "object_repr": "Business",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2023-03-24T11:56:39.843Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "3",
+    "object_repr": "The Real-Time AI Data Race Is On",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2023-03-24T12:00:00.693Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "4",
+    "object_repr": "How Wall Street Banks Will Reap Billions From Tax-Free Renewable Energy Bonds",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2023-03-24T12:01:34.673Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "5",
+    "object_repr": "2023 Predictions For The Sports And Health Technology Industry",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2023-03-24T12:04:14.685Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "category"
+    ],
+    "object_id": "5",
+    "object_repr": "Health",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2023-03-24T12:04:19.167Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "category"
+    ],
+    "object_id": "6",
+    "object_repr": "Science",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2023-03-24T12:17:50.051Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "1",
+    "object_repr": "Test blog",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2023-03-24T13:50:21.131Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "2",
+    "object_repr": "Canada’s population sees record growth as immigration rises",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2023-03-24T13:50:45.051Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "2",
+    "object_repr": "Canada’s population sees record growth as immigration rises",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Short description\", \"Blog body\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2023-03-24T13:51:00.728Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "1",
+    "object_repr": "Test blog",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Short description\", \"Blog body\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2023-03-24T13:51:49.807Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "1",
+    "object_repr": "Socially responsible investing, marketed under the moniker",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Title\", \"Slug\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2023-03-24T14:15:54.578Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "1",
+    "object_repr": "Socially responsible investing, marketed under the moniker",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Featured image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2023-03-24T14:33:28.126Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "4",
+    "object_repr": "How Wall Street Banks Will Reap Billions From Tax-Free Renewable Energy Bonds",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is featured\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2023-03-24T14:33:55.923Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "4",
+    "object_repr": "How Wall Street Banks Will Reap Billions From Tax-Free Renewable Energy Bonds",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is featured\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2023-03-24T14:39:20.358Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "4",
+    "object_repr": "How Wall Street Banks Will Reap Billions From Tax-Free Renewable Energy Bonds",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is featured\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2023-03-24T14:39:55.013Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "4",
+    "object_repr": "How Wall Street Banks Will Reap Billions From Tax-Free Renewable Energy Bonds",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is featured\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2023-03-24T14:51:34.548Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "3",
+    "object_repr": "The Real-Time AI Data Race Is On",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is featured\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2023-03-24T15:04:57.767Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "4",
+    "object_repr": "How Wall Street Banks Will Reap Billions From Tax-Free Renewable Energy Bonds",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Short description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2023-03-25T07:11:43.299Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "1",
+    "object_repr": "Socially responsible investing, marketed under the moniker",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Category\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2023-03-28T09:13:23.179Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "assignments",
+      "about"
+    ],
+    "object_id": "1",
+    "object_repr": "About Us",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2023-03-28T09:16:46.327Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "assignments",
+      "about"
+    ],
+    "object_id": "1",
+    "object_repr": "About Django",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"About heading\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2023-03-28T09:16:58.367Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "assignments",
+      "about"
+    ],
+    "object_id": "1",
+    "object_repr": "About Us",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"About heading\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2023-03-28T09:18:03.178Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "assignments",
+      "about"
+    ],
+    "object_id": "2",
+    "object_repr": "About 2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2023-03-28T09:26:29.697Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "assignments",
+      "about"
+    ],
+    "object_id": "2",
+    "object_repr": "About 2",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2023-03-28T09:26:58.773Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "assignments",
+      "about"
+    ],
+    "object_id": "1",
+    "object_repr": "About Us",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2023-03-28T09:27:14.984Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "assignments",
+      "about"
+    ],
+    "object_id": "3",
+    "object_repr": "About Us",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2023-03-28T09:34:05.106Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "assignments",
+      "sociallink"
+    ],
+    "object_id": "1",
+    "object_repr": "GitHub",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2023-03-28T09:34:56.105Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "assignments",
+      "sociallink"
+    ],
+    "object_id": "2",
+    "object_repr": "LinkedIn",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2023-03-28T09:35:47.382Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "assignments",
+      "sociallink"
+    ],
+    "object_id": "3",
+    "object_repr": "Facebook",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2023-03-28T09:41:18.857Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "assignments",
+      "sociallink"
+    ],
+    "object_id": "4",
+    "object_repr": "Pinterest",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2023-04-06T10:18:58.307Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "editor1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2023-04-06T10:21:40.982Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "editor1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Staff status\", \"User permissions\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2023-04-06T10:24:50.563Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "editor1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2023-04-06T10:26:37.126Z",
+    "user": [
+      "editor1"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "6",
+    "object_repr": "test blog",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2023-04-06T10:30:31.247Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "object_id": "1",
+    "object_repr": "Manager",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2023-04-06T10:31:31.561Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "5",
+    "object_repr": "manager1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2023-04-06T10:32:25.698Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "5",
+    "object_repr": "manager1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Staff status\", \"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2023-04-06T10:33:53.029Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "object_id": "2",
+    "object_repr": "Editor",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2023-04-06T10:34:16.228Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "editor1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\", \"User permissions\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2023-04-07T20:25:44.582Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "6",
+    "object_repr": "test blog",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2023-04-12T11:21:24.863Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "blog"
+    ],
+    "object_id": "7",
+    "object_repr": "sfgdfg",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2023-04-14T12:32:59.641Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "1",
+    "object_repr": "djangoadmin",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 53,
+  "fields": {
+    "action_time": "2023-04-14T12:33:18.089Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "rathan123",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 54,
+  "fields": {
+    "action_time": "2023-04-14T12:33:30.682Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "test123",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 55,
+  "fields": {
+    "action_time": "2023-04-24T11:51:43.823Z",
+    "user": [
+      "djangoadmin"
+    ],
+    "content_type": [
+      "blogs",
+      "comment"
+    ],
+    "object_id": "1",
+    "object_repr": "This is a test comment",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+}
+]
