@@ -151,7 +151,7 @@ CKEDITOR_CONFIGS = {
         'width': '100%',
     },
 }
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+X_FRAME_OPTIONS = 'ALLOWALL'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
