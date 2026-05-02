@@ -13,3 +13,11 @@ gunicorn
 Pillow
 whitenoise==6.7.0
 django-allauth[socialaccount]
+crispy-bootstrap4
+Django
+django-allauth[socialaccount]
+django-ckeditor==6.7.1
+django-crispy-forms
+gunicorn
+Pillow
+whitenoise==6.7.0
