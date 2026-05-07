@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Featured Story on BlogSphere</title>
+</head>
+<body style="margin:0;padding:0;background:#f9f9f9;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f9f9f9;padding:40px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.07);">
+          <!-- Header -->
+          <tr>
+            <td style="background:#ffc107;padding:28px 40px;text-align:center;">
+              <span style="font-size:26px;font-weight:900;color:#212529;letter-spacing:-0.5px;">BlogSphere</span>
+            </td>
+          </tr>
+          <!-- Label -->
+          <tr>
+            <td style="padding:28px 40px 0;">
+              <span style="display:inline-block;background:#fff3cd;color:#856404;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:20px;">
+                ★ Featured Story
+              </span>
+            </td>
+          </tr>
+          <!-- Body -->
+          <tr>
+            <td style="padding:16px 40px 24px;">
+              <h2 style="margin:0 0 12px;font-size:22px;color:#212529;line-height:1.3;">{{ post.title }}</h2>
+              <p style="margin:0 0 8px;font-size:13px;color:#adb5bd;">
+                By {{ post.author.get_full_name|default:post.author.username }}
+                &nbsp;·&nbsp; {{ post.category }}
+              </p>
+              <p style="margin:12px 0 24px;font-size:15px;color:#495057;line-height:1.7;">
+                {{ post.short_description }}
+              </p>
+              <a href="{{ site_url }}{{ post_url }}"
+                 style="display:inline-block;background:#ffc107;color:#212529;font-weight:700;font-size:15px;text-decoration:none;padding:12px 28px;border-radius:5px;">
+                Read the full story →
+              </a>
+            </td>
+          </tr>
+          <!-- Divider -->
+          <tr>
+            <td style="padding:0 40px;">
+              <hr style="border:none;border-top:1px solid #f0f0f0;margin:0;">
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td style="padding:20px 40px 32px;">
+              <p style="margin:0;font-size:13px;color:#adb5bd;line-height:1.6;">
+                You're receiving this because you subscribed to
+                <a href="{{ site_url }}" style="color:#ffc107;text-decoration:none;">BlogSphere</a>.
+                If you no longer wish to receive these emails, simply ignore future ones.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
