@@ -9,6 +9,7 @@ from assignments.models import About
 from .forms import RegistrationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
+from blogs.emails import send_login_notification
 
 
 def _is_login_locked(request):
@@ -87,6 +88,7 @@ def login(request):
                 request.session.pop('login_attempts', None)
                 request.session.pop('login_lockout_until', None)
                 auth.login(request, user)
+                send_login_notification(user, request)
                 next_url = request.GET.get('next') or request.POST.get('next')
                 if next_url:
                     return redirect(next_url)

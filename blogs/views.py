@@ -12,6 +12,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic import DetailView, ListView
 
 from .models import Blog, Category, Comment, ContactMessage, NewsletterSubscriber, Tag
+from .emails import send_newsletter_welcome
 
 
 class BlogListView(ListView):
@@ -221,6 +222,7 @@ def newsletter_subscribe(request):
         sub.is_active = True
         sub.save(update_fields=['is_active'])
     if created:
+        send_newsletter_welcome(email, request)
         messages.success(request, "You're subscribed — welcome to BlogSphere!")
     else:
         messages.info(request, "You're already on the list. Thanks for sticking with us!")
