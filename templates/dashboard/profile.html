@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+    {% include 'dashboard/sidebar.html' %}
+
+    <div class="col-md-9">
+        <h4 class="mb-4" style="font-weight:800;">My Profile</h4>
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="sidebar-card p-4 rounded mb-4">
+                <h5 class="mb-3" style="font-weight:700;border-bottom:2px solid #ffc107;padding-bottom:8px;">
+                    Account Details
+                </h5>
+                <div class="mb-2">
+                    <label class="font-weight-bold">Username</label>
+                    <p class="text-muted mb-0">{{ user.username }} <small>(cannot be changed here)</small></p>
+                </div>
+                {{ user_form|crispy }}
+            </div>
+
+            <div class="sidebar-card p-4 rounded mb-4">
+                <h5 class="mb-3" style="font-weight:700;border-bottom:2px solid #ffc107;padding-bottom:8px;">
+                    Public Profile
+                </h5>
+
+                {% if profile.avatar %}
+                <div class="mb-3 d-flex align-items-center">
+                    <img src="{{ profile.avatar.url }}"
+                         alt="Current avatar"
+                         style="width:72px;height:72px;object-fit:cover;border-radius:50%;border:3px solid #ffc107;margin-right:16px;">
+                    <div>
+                        <p class="mb-0 font-weight-bold">Current avatar</p>
+                        <small class="text-muted">Upload a new image below to replace it.</small>
+                    </div>
+                </div>
+                {% endif %}
+
+                {{ profile_form|crispy }}
+            </div>
+
+            <button type="submit" class="btn btn-warning px-4" style="font-weight:700;">
+                Save changes
+            </button>
+            <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary px-4 ml-2">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -103,6 +103,18 @@ class ProfileForm(forms.ModelForm):
         }
 
 
+class SelfProfileForm(forms.ModelForm):
+    """Lightweight user-details form for self-service profile editing."""
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+        widgets = {
+            'first_name': forms.TextInput(attrs={'placeholder': 'First name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last name'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'you@example.com'}),
+        }
+
+
 class AddUserForm(UserCreationForm):
     class Meta:
         model = User

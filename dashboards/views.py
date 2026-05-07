@@ -7,7 +7,7 @@ from django.template.defaultfilters import slugify
 
 from blogs.models import Blog, Category, Comment
 
-from .forms import AddUserForm, BlogPostForm, CategoryForm, EditUserForm, ProfileForm
+from .forms import AddUserForm, BlogPostForm, CategoryForm, EditUserForm, ProfileForm, SelfProfileForm
 from blogs.models import Profile
 
 
@@ -218,6 +218,27 @@ def edit_user(request, pk):
         profile_form = ProfileForm(instance=profile)
     return render(request, 'dashboard/edit_user.html', {
         'form': form, 'profile_form': profile_form, 'edit_user': user,
+    })
+
+
+@login_required(login_url='login')
+def edit_profile(request):
+    profile, _ = Profile.objects.get_or_create(user=request.user)
+    if request.method == 'POST':
+        user_form = SelfProfileForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Profile updated successfully.')
+            return redirect('edit_profile')
+    else:
+        user_form = SelfProfileForm(instance=request.user)
+        profile_form = ProfileForm(instance=profile)
+    return render(request, 'dashboard/profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form,
+        'profile': profile,
     })
 
 
