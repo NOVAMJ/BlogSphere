@@ -10,6 +10,9 @@
     {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
     {{ form | crispy }}
     <button type="submit" class="btn btn-warning btn-block">Login</button>
+    <div class="text-center mt-2">
+        <a href="{% url 'password_reset' %}" class="text-muted" style="font-size:0.9rem;">Forgot your password?</a>
+    </div>
 </form>
 
 {% include 'includes/oauth_buttons.html' %}
