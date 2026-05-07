@@ -6,7 +6,7 @@
 {% block content %}
 
   {# ---------------- HERO BANNER ---------------- #}
-  {% with hero=featured_posts.0|default:posts.0 %}
+  {% with hero=hero %}
   {% if hero %}
   <section class="hero-banner mb-5"
            {% if hero.featured_image %}style="background-image: linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.78) 100%), url('{{ hero.featured_image.url }}');"{% endif %}>

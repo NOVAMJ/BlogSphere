@@ -39,7 +39,10 @@ def _record_failed_login(request):
 def home(request):
     featured_posts = Blog.objects.filter(is_featured=True, status='Published').order_by('-updated_at')
     posts = Blog.objects.filter(is_featured=False, status='Published')
-    
+
+    # Determine hero post in Python to avoid Django 6 template QuerySet-index issues
+    hero = featured_posts.first() or posts.first()
+
     # Fetch about us
     try:
         about = About.objects.get()
@@ -48,6 +51,7 @@ def home(request):
     context = {
         'featured_posts': featured_posts,
         'posts': posts,
+        'hero': hero,
         'about': about,
     }
     return render(request, 'home.html', context)

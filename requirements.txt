@@ -10,3 +10,13 @@ dj-database-url
 psycopg2-binary
 dj-database-url
 psycopg2-binary
+crispy-bootstrap4
+dj-database-url
+Django
+django-allauth[socialaccount]
+django-ckeditor==6.7.1
+django-crispy-forms
+gunicorn
+Pillow
+psycopg2-binary
+whitenoise==6.7.0
