@@ -22,8 +22,6 @@
               <span>By <a href="{% url 'author_profile' hero.author.username %}">{{ hero.author.get_full_name|default:hero.author.username }}</a></span>
               <span class="dot">·</span>
               <span>{{ hero.created_at|date:"M j, Y" }}</span>
-              <span class="dot">·</span>
-              <span><i class="fa fa-clock-o"></i> {{ hero.reading_time }} min read</span>
           </div>
           <a class="hero-banner__cta" href="{% url 'blogs' hero.slug %}">
               Read story <i class="fa fa-long-arrow-right ml-2"></i>
@@ -54,8 +52,6 @@
             <a href="{% url 'author_profile' post.author.username %}">{{ post.author }}</a>
             <span class="dot">·</span>
             <span>{{ post.created_at|timesince }} ago</span>
-            <span class="dot">·</span>
-            <span><i class="fa fa-clock-o"></i> {{ post.reading_time }} min</span>
             {% if post.views %}<span class="dot">·</span><span><i class="fa fa-eye"></i> {{ post.views }}</span>{% endif %}
           </div>
           {% if post.tags.all %}
@@ -96,8 +92,6 @@
                     <a href="{% url 'author_profile' post.author.username %}">{{ post.author }}</a>
                     <span class="dot">·</span>
                     <span>{{ post.created_at|timesince }} ago</span>
-                    <span class="dot">·</span>
-                    <span><i class="fa fa-clock-o"></i> {{ post.reading_time }} min read</span>
                     {% if post.views %}<span class="dot">·</span><span><i class="fa fa-eye"></i> {{ post.views }}</span>{% endif %}
                 </div>
                 {% if post.tags.all %}

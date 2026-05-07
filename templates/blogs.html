@@ -23,8 +23,6 @@
                         <span class="dot">·</span>
                         <span>{{ single_blog.created_at|date:"M j, Y" }}</span>
                         <span class="dot">·</span>
-                        <span><i class="fa fa-clock-o"></i> {{ single_blog.reading_time }} min read</span>
-                        <span class="dot">·</span>
                         <span><i class="fa fa-eye"></i> {{ single_blog.views }} view{{ single_blog.views|pluralize }}</span>
                     </div>
                 </header>
@@ -191,8 +189,6 @@
                           <h4 class="post-card__title"><a href="{% url 'blogs' rp.slug %}">{{ rp.title }}</a></h4>
                           <div class="post-card__meta">
                             <span>{{ rp.created_at|timesince }} ago</span>
-                            <span class="dot">·</span>
-                            <span><i class="fa fa-clock-o"></i> {{ rp.reading_time }} min</span>
                           </div>
                         </div>
                       </article>
