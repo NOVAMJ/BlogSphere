@@ -2,6 +2,8 @@
 import time
 
 from django.conf import settings
+from django.contrib.auth import views as auth_views
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 
 from blogs.models import Blog, Category
@@ -10,6 +12,26 @@ from .forms import RegistrationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
 from blogs.emails import send_login_notification
+
+
+class PasswordResetView(auth_views.PasswordResetView):
+    """Override Django's built-in view to use the real request domain instead
+    of the django_site table (which defaults to example.com)."""
+
+    def form_valid(self, form):
+        opts = {
+            'use_https': self.request.is_secure(),
+            'token_generator': self.token_generator,
+            'from_email': self.from_email,
+            'email_template_name': self.email_template_name,
+            'subject_template_name': self.subject_template_name,
+            'request': self.request,
+            'html_email_template_name': self.html_email_template_name,
+            'extra_email_context': self.extra_email_context,
+            'domain_override': self.request.get_host(),
+        }
+        form.save(**opts)
+        return HttpResponseRedirect(self.get_success_url())
 
 
 def _is_login_locked(request):
